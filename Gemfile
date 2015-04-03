@@ -27,3 +27,5 @@ group :development, :test do
 end
 
 gem 'devise'
+
+gem 'acts-as-taggable-on', '~> 3.4'
