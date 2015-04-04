@@ -29,3 +29,9 @@ end
 gem 'devise'
 
 gem 'acts-as-taggable-on', '~> 3.4'
+
+gem 'bootstrap-sass'
+
+gem 'bootswatch-rails'
+
+gem "font-awesome-rails"

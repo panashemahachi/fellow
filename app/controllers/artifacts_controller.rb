@@ -4,7 +4,11 @@ class ArtifactsController < ApplicationController
   # GET /artifacts
   # GET /artifacts.json
   def index
-    @artifacts = Artifact.all
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @artifacts = Artifact.all
+    end
   end
 
   # GET /artifacts/1

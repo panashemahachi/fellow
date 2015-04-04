@@ -11,12 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403214218) do
+ActiveRecord::Schema.define(version: 20150404021243) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
     t.string   "kind"
     t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.string   "image"
+  end
+
+  create_table "fellowships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
@@ -42,6 +49,11 @@ ActiveRecord::Schema.define(version: 20150403214218) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
+  create_table "user_fellowships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -55,9 +67,12 @@ ActiveRecord::Schema.define(version: 20150403214218) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fellowship_id"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

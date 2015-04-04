@@ -1,0 +1,28 @@
+@import "bootstrap-sprockets";
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:100);
+
+h2{
+	font-family: "Roboto";
+}
+
+.artifacts-wrapper{
+	
+	overflow: scroll;
+	height: 500px;
+	width:100%;
+}
+
+@import "bootswatch/paper/variables";
+
+@import "bootstrap";
+
+//body { padding-top: 60px; }
+
+@import "bootswatch/paper/bootswatch";
+
+@import "info";
+
+@import "artifacts";
+
+@import "font-awesome";

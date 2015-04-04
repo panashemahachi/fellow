@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>fellow</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<% flash.each do |name, msg| %>
+<% if name == "notice" %>
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h6 class="text-center"><%= msg %></h6>
+
+  <% else %>
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <h6 class="text-center"><%= msg %></h6>
+  <% end %>
+</div>
+
+<% end %>
+<div class="container">
+<%= yield %>
+</div>
+</body>
+</html>
