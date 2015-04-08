@@ -4,7 +4,11 @@ class ArtifactsController < ApplicationController
   # GET /artifacts
   # GET /artifacts.json
   def index
-    if params[:tag]
+
+    if params[:search]
+      @artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(id: :desc)
+
+    elsif params[:tag]
       @articles = Artifact.tagged_with(params[:tag])
     else
       @artifacts = Artifact.where(user_id: current_user.id).order(id: :desc)

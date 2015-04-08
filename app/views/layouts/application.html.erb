@@ -69,11 +69,15 @@
 
     <div id="search">
     <button type="button" class="close">×</button>
-    <form>
-        <input type="search" value="" placeholder="What would you like to find?" />
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+        <%= form_tag(artifacts_path, method: :get) do |f| %>
+
+      <%= search_field_tag :search, params[:search], placeholder: "What would you like to find?", id: nil %>
+      <%= button_tag "Search", name: nil, class: 'btn btn-primary' %>
+
+    <% end %>
+
 </div>
+
 <!--
 <% flash.each do |name, msg| %>
 <% if name == "notice" %>
@@ -94,6 +98,7 @@
 <div class="container">
 <%= yield %>
 </div>
+
 
 
 </body>
