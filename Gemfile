@@ -43,3 +43,5 @@ gem 'multi_xml'
 gem 'nokogiri'
 
 gem 'simple_form'
+
+gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"

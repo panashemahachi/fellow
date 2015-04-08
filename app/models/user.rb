@@ -5,8 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
 
   has_many :artifacts
-  has_many :user_fellowships
-  has_many :fellowships, :through => :user_fellowships
+  has_many :fellowshipments
+  has_many :fellowships, :through => :fellowshipments
+  has_attached_file :profile_pic, styles: {medium: "300x300"}
+  validates_attachment_content_type :profile_pic, :content_type => /\Aimage\/.*\Z/
+
+
   attr_accessor :login
 
 def self.find_for_database_authentication(warden_conditions)

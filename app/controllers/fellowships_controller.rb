@@ -25,6 +25,7 @@ class FellowshipsController < ApplicationController
   # POST /fellowships.json
   def create
     @fellowship = Fellowship.new(fellowship_params)
+    @fellowship.users << current_user
 
     respond_to do |format|
       if @fellowship.save
@@ -61,6 +62,9 @@ class FellowshipsController < ApplicationController
     end
   end
 
+  def members
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fellowship
@@ -69,6 +73,6 @@ class FellowshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fellowship_params
-      params[:fellowship]
+     params.require(:fellowship).permit(:fellowship_name, :user_id)
     end
 end

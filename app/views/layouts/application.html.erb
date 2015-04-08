@@ -27,6 +27,7 @@
               <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
           <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "View Your Profile", profile_link_path(current_user.username)%></li>
               <li><%= link_to "Edit Your Profile", edit_user_registration_path%></li>
               <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
               </ul>
@@ -40,7 +41,11 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= fa_icon "inr 2x", class: 'fa-red'%> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
               <li class="dropdown-header">Fellowships</li>
-              <li><a>Put fellowships here</a></li>
+              <% Fellowship.all.each do |f| %>
+              <% if f.users.include?(current_user) %>
+              <li><%= link_to f.fellowship_name, f %></li>
+              <% end %>
+              <% end %>
               </ul>
               </li>
             <li><a href="#"><%= fa_icon "users 2x", class: 'fa-red'%></a></li>
@@ -55,9 +60,17 @@
             </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#newArtifact' do%>
-            <%= fa_icon "plus 2x", class: 'fa-red' %>
-            <% end %>
+
+           <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= fa_icon "plus 2x", class: 'fa-red'%> <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "Artifact", "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#newArtifact'%></li>
+            <li><%= link_to "Fellowship", "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#newFellowship'%></li>
+
+              </ul>
+              </li>
+
+
             </li>
           </ul>
            <ul class="nav navbar-nav navbar-right">

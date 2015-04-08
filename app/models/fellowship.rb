@@ -1,4 +1,4 @@
 class Fellowship < ActiveRecord::Base
-	has_many :fellowships
-	has_many :users, :through => :user_fellowships
+	has_many :fellowshipments
+	has_many :users, :through => :fellowshipments
 end

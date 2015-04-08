@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_fellowship_path(@fellowship) %> |
-<%= link_to 'Back', fellowships_path %>
+<%= link_to root_path, style: 'display:inline; float:left', class: 'fa-red' do %>
+  <%= fa_icon "arrow-left 2x"%>
+<% end %>
+<center><h2 style="display:inline" class="text-center"><%= @fellowship.fellowship_name %></h2></center>
+
+<h3>Members (<%= @fellowship.users.count %>)</h3>
+
+<% @fellowship.users.recent(5).each do |m| %>
+<div class="col-md-2">
+<%= m.username %>
+</div>
+	<% end %>
