@@ -7,6 +7,74 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="progress" style="margin-bottom:0px;margin-top:-50px;">
+  <div class="progress-bar" style="width:100%;"></div>
+</div>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-brand-centered">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand navbar-brand-centered">
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <%= image_tag('logo.png', class: 'img-responsive')%>
+              <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+          <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Edit Your Profile", edit_user_registration_path%></li>
+              <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+              </ul>
+              </li></div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-brand-centered">
+          <ul class="nav navbar-nav">
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= fa_icon "inr 2x", class: 'fa-red'%> <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-header">Fellowships</li>
+              <li><a>Put fellowships here</a></li>
+              </ul>
+              </li>
+            <li><a href="#"><%= fa_icon "users 2x", class: 'fa-red'%></a></li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= fa_icon "tags 2x", class: 'fa-red'%> <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+              <li class="dropdown-header">Your Tags</li>
+              <% tag_cloud Artifact.tag_counts, %w[s m l] do |tag, css_class| %>
+    <li><%= link_to tag.name, tag_path(tag.name), class: css_class %></li>
+  <% end %>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#newArtifact' do%>
+            <%= fa_icon "plus 2x", class: 'fa-red' %>
+            <% end %>
+            </li>
+          </ul>
+           <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#search"><%= fa_icon "search 2x", class: 'fa-red'%></a></li>
+                </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="search">
+    <button type="button" class="close">×</button>
+    <form>
+        <input type="search" value="" placeholder="What would you like to find?" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+<!--
 <% flash.each do |name, msg| %>
 <% if name == "notice" %>
 <div class="alert alert-dismissible alert-success">
@@ -21,89 +89,12 @@
 </div>
 
 <% end %>
- <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Fellow</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to current_user.username.humanize, edit_user_registration_path %></li>
-          </ul>
-          </div>
-      </div>
-    </nav>
 
-    <div class="container-fluid">
-      <div class="row">
-      adsfd
-        <div class="col-md-2">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Your Channel</a></li>
-            <li><a href="#">Videos</a></li>
-            <li><a href="#">Articles</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Technology</a></li>
-            <li><a href="">News</a></li>
-            <li><a href="">Life</a></li>
-            <li><a href="">Education</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Bill Gates</a></li>
-            <li><a href="">Elon Musk</a></li>
-            <li><a href="">Larry Page</a></li>
-          </ul>
-        </div>
-        <div class="col-md-10">
-
-<% @artifacts = current_user.artifacts %>
-        <div class="col-md-5">
-        <div class="artifacts-wrapper">
-<!--
-<div id="tag_cloud">
-  <% tag_cloud Artifact.tag_counts, %w[s m l] do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-</div>-->
-
-    <% @artifacts.each do |artifact| %>
-    <%= link_to artifact do%>
-  <div class="block-update-card status">
-    <div class="update-card-body">
-      <div class="update-card-body">
-      <h4 class="text-center"><%= artifact.title %></h4>
-      <%= image_tag(artifact.image, class: 'img-responsive tile-img') %>
-    </div>
-    </div>
-    <div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-  <div class="btn-group"><%= fa_icon "bookmark-o" %></div>
-  <div class="btn-group"><%= fa_icon "external-link"%></div>
-  <div class="btn-group"><%= fa_icon "tags"%></div>
-   <div class="btn-group"><%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
-   <%= fa_icon 'trash-o' %>
-   <% end %>
-   </div>
-</div>
-</div>
-<br />
-<% end %>
-<% end %>
-</div>
-</div>
-<div class="col-md-7">
+-->
+<div class="container">
 <%= yield %>
 </div>
-</div>
-</div>
-</div>
-</div>
+
+
 </body>
 </html>

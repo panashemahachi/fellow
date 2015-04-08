@@ -1,6 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<h2 class="text-center"><%= @artifact.title %></h2>
+<%= link_to :back, style: 'display:inline; float:left', class: 'fa-red' do %>
+  <%= fa_icon "arrow-left 2x"%>
+<% end %>
+<center><h2 style="display:inline" class="text-center"><%= @artifact.title %></h2></center>
 <!--
 <p>
   <strong>Kind:</strong>
@@ -9,7 +10,9 @@
 
 <p>
   <strong>Content:</strong>
-  <%= @artifact.content %>
+  <div class="cont">
+  <%= raw @artifact.content %>
+  </div>
 </p>
 
 <%= link_to 'Edit', edit_artifact_path(@artifact) %> |

@@ -5,9 +5,9 @@ class ArtifactsController < ApplicationController
   # GET /artifacts.json
   def index
     if params[:tag]
-      @articles = Article.tagged_with(params[:tag])
+      @articles = Artifact.tagged_with(params[:tag])
     else
-      @artifacts = Artifact.all
+      @artifacts = Artifact.where(user_id: current_user.id).order(id: :desc)
     end
   end
 
@@ -30,9 +30,13 @@ class ArtifactsController < ApplicationController
   # POST /artifacts.json
   def create
     #@artifact = Artifact.new(artifact_params)
-
     if current_user
       @artifact = current_user.artifacts.build(artifact_params)
+      if @artifact.link != ""
+
+      # @artifact.content = Nokogiri::HTML::Document.parse(HTTParty.get(URI.encode(@artifact.link.to_s))).body
+      @artifact.content =  Nokogiri::HTML(HTTParty.get("http://www.businessinsider.com/google-exec-sridhar-ramaswamy-controls-a-60-billion-business-2015-4").body.to_s).at_css("body").css('h1, h2, h3, h4, h5, h6').sort()
+      end
     else
       @artifact = Artifact.new(artifact_params)
     end

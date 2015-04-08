@@ -35,3 +35,11 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 
 gem "font-awesome-rails"
+
+gem 'httparty'
+
+gem 'multi_xml'
+
+gem 'nokogiri'
+
+gem 'simple_form'

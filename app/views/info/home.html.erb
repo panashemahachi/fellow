@@ -1,2 +1,95 @@
-<center><%= image_tag('logo.png', class: 'img-responsive logo') %></center>
-<h2>currate, follow, learn</h2>
+<div class="home">
+
+<div class="container">
+
+<center><%= image_tag('logo.png', :class => 'img-responsive logo')%>
+
+	<h3 id="tagline">curate, learn, follow</h3>
+					 <%= button_tag "Sign Up", class: 'btn btn-primary', :'data-toggle' => 'modal', :'data-target' => '#signUpModal',method: 'get'%>
+					 <p> or <%= link_to "Sign In", "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#loginModal'%></p>
+</center>
+</div>
+	<footer class="footer">
+      <div class="container">
+        <h6 class="text-muted text-center">&copy; 2015 Bubble Gum</h6>
+      </div>
+    </footer>
+</div>
+
+<div class="modal fade" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Sign In</h4>
+      </div>
+  <div class="modal-body">
+
+  <%= simple_form_for(:user, :url => user_session_path) do |f| %>
+  <div class="field">
+    <%= f.label "Username or Email" %><br />
+    <%= f.text_field :login, autofocus: true, class: 'form-control', style: 'padding-left:7px' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control', style: 'padding-left:7px' %>
+  </div>
+<div class="modal-footer">
+  <div class="actions">
+    <%= f.submit "Sign In", :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
+
+  </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+<div class="modal fade" id="signUpModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Sign Up</h4>
+      </div>
+  <div class="modal-body">
+
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="field">
+  <%= f.label :username %><br />
+<%= f.text_field :username , autofocus: true, class: 'form-control', style: 'padding-left:7px', required: true %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, class: 'form-control', style: 'padding-left:7px', required: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", class: 'form-control', style: 'padding-left:7px', required: true  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', style: 'padding-left:7px', required: true  %>
+  </div>
+
+  <div class="modal-footer">
+  <div class="actions">
+    <%= f.submit "Sign Up", :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
+
+  </div>
+  </div>
+
+</div>
+</div>
+</div>

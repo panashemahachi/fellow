@@ -1,34 +1,86 @@
-<div class="col-md-4">
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>
 <div id="tag_cloud">
   <% tag_cloud Artifact.tag_counts, %w[s m l] do |tag, css_class| %>
     <%= link_to tag.name, tag_path(tag.name), class: css_class %>
   <% end %>
-</div>
+</div>-->
 
     <% @artifacts.each do |artifact| %>
-    <%= link_to artifact do%>
-  <div class="block-update-card status">
-    <div class="update-card-body">
-      <div class="update-card-body">
-      <h4 class="text-center"><%= artifact.title %></h4>
-      <%= image_tag(artifact.image, class: 'img-responsive tile-img') %>
+            <div class="col-md-4">
+<%= link_to artifact do %>
+
+<div card class="art-cards">
+    <div class="image">
+        <%= image_tag(artifact.image) %>
+        <span class="title"><%= artifact.title %></span>
     </div>
+    <div class="content">
+        <p><%=h truncate(artifact.content, length: 80) %></p>
     </div>
-    <div class="card-action-pellet btn-toolbar pull-right" role="toolbar">
-  <div class="btn-group"><%= fa_icon "bookmark-o" %></div>
-  <div class="btn-group"><%= fa_icon "external-link"%></div>
-  <div class="btn-group"><%= fa_icon "tags"%></div>
-   <div class="btn-group"><%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
-   <%= fa_icon 'trash-o' %>
-   <% end %>
-   </div>
-</div>
-</div>
-<% end %>
-<% end %>
-<%= link_to 'New Artifact', new_artifact_path %>
+    <div class="action">
+        <% artifact.tag_list.each do |t| %>
+           <span class="label label-default"><%= t %></span>
+           <% end %></h6>
+           <div class="meta-options" style="float:right;display:none;">
+           <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
+           <%= fa_icon "trash 2x" %>
+           <% end %>
+
+           <%= fa_icon "share 2x" %>
+           <%= fa_icon "star-o 2x" %>
+           </div>
+    </div>
 </div>
 
-<div class="col-md-8">
+  <% end %>
+  <br />
+      </div>
+  <% end %>
+
+
+
+<div class="modal fade" id="newArtifact">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Add An Artifact</h4>
+      </div>
+  <div class="modal-body">
+
+  <%= simple_form_for(Artifact.new) do |f|  %>
+
+    <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title , autofocus: true, class: 'form-control', :style => 'padding-left:7px' %>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br>
+    <%= f.text_field :kind, class: 'form-control', :style => 'padding-left:7px' %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_field :content, class: 'form-control', :style => 'padding-left:7px' %>
+  </div>
+  <div class="field">
+    <%= f.label :link %><br>
+    <%= f.text_field :link , class: 'form-control', :style => 'padding-left:7px'%>
+  </div>
+  <div class="field">
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+  <%= f.text_field :tag_list, class: 'form-control', :style => 'padding-left:7px' %>
 </div>
+
+<div class="modal-footer">
+  <div class="actions">
+    <%= f.submit "Submit", :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
+
+  </div>
+  </div>
+
+</div>
+</div>
+</div>
+
