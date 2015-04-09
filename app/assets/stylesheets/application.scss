@@ -125,6 +125,25 @@ h2{
   }
 }
 
+.red-bar{
+    background-color: $brand_red;
+    position:fixed;
+    top:0;
+    height:20px;
+    width:100%;
+    z-index:1000;
+}
+
+.platform-footer {
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+.platform-footer p:last-child {
+  margin-bottom: 0;
+}
+
 $brand-primary:         $brand_red;
 @import "bootswatch/paper/variables";
 

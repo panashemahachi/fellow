@@ -47,7 +47,7 @@ class ArtifactsController < ApplicationController
       #@artifact.content =  Nokogiri::HTML(HTTParty.get("http://www.businessinsider.com/google-exec-sridhar-ramaswamy-controls-a-60-billion-business-2015-4").body.to_s).at_css("body").css('h1, h2, h3, h4, h5, h6').sort()
      source = open(@artifact.link).read
 
-      @artifact.content = Readability::Document.new(source, :tags => %w[div h1 h2 h3 h4 h5 h6 p img a ul li b i a]).content
+      @artifact.content = Readability::Document.new(source, :tags => %w[div h1 h2 h3 h4 h5 h6 p img a ul li b i a span br em], :attributes => %w[src href]).content
       object = LinkThumbnailer.generate(@artifact.link)
       @artifact.image = object.images.first.src.to_s
       @artifact.title = object.title
@@ -114,6 +114,6 @@ class ArtifactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artifact_params
-      params.require(:artifact).permit(:title, :kind, :content, :user_id, :tag_list, :link, :image)
+      params.require(:artifact).permit(:title, :kind, :content, :user_id, :tag_list, :link, :image, :tldr)
     end
 end

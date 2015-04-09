@@ -4,6 +4,6 @@ class Artifact < ActiveRecord::Base
 	acts_as_votable
 
 	def self.search(query)
-		where("title like ?", "%#{query}%")
+		where("content like ?", "%#{query}%")
 	end
 end

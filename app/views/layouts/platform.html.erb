@@ -4,13 +4,13 @@
   <title>fellow</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= favicon_link_tag 'logo_key.png' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="progress" style="margin-bottom:0px;margin-top:-50px;">
-  <div class="progress-bar" style="width:100%;"></div>
+<div class="red-bar">
 </div>
-      <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-top:7px;">
         <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -99,12 +99,12 @@
 
 <% flash.each do |name, msg| %>
 <% if name == "notice" %>
-<div class="alert alert-dismissible alert-success" style="margin-top:-30px">
+<div class="alert alert-dismissible alert-success" style="margin-top:28px">
   <button type="button" class="close" data-dismiss="alert">×</button>
   <h6 class="text-center"><%= msg %></h6>
 
   <% else %>
-<div class="alert alert-dismissible alert-danger" style="margin-top:-30px">
+<div class="alert alert-dismissible alert-danger" style="margin-top:28px">
   <button type="button" class="close" data-dismiss="alert">×</button>
   <h6 class="text-center"><%= msg %></h6>
   <% end %>
@@ -112,10 +112,9 @@
 
 <% end %>
 
-<div class="container">
+<div class="container" style="margin-top:40px">
 <%= yield %>
 </div>
-
 
 
 <div class="modal fade" id="newArtifact">
@@ -128,7 +127,7 @@
   <div class="modal-body">
 
   <%= simple_form_for(Artifact.new) do |f|  %>
-
+<!--
     <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title , autofocus: true, class: 'form-control', :style => 'padding-left:7px' %>
@@ -140,11 +139,17 @@
   <div class="field">
     <%= f.label :content %><br>
     <%= f.text_field :content, class: 'form-control', :style => 'padding-left:7px' %>
-  </div>
+  </div>-->
   <div class="field">
     <%= f.label :link %><br>
-    <%= f.text_field :link , class: 'form-control', :style => 'padding-left:7px'%>
+    <%= f.text_field :link, autofocus: true , class: 'form-control', :style => 'padding-left:7px'%>
   </div>
+
+   <div class="field">
+    <%= f.label "TLDR" %><br>
+    <%= f.text_field :tldr , class: 'form-control', :style => 'padding-left:7px'%>
+  </div>
+
   <div class="field">
   <%= f.label :tag_list, "Tags (separated by commas)" %><br />
   <%= f.text_field :tag_list, class: 'form-control', :style => 'padding-left:7px' %>
