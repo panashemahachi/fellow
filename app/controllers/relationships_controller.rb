@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+    layout "platform"
 
   def follow
     followee = User.find_by_id(params[:id])

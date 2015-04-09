@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+	    layout "platform"
+
   def show
   	@user = User.find_by_username(params[:id])
 

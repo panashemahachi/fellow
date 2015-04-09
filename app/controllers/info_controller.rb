@@ -1,7 +1,5 @@
 class InfoController < ApplicationController
-
-	layout "info"
-	
+layout "application"	
 	def home
 	end
 end

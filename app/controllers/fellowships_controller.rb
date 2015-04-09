@@ -1,4 +1,6 @@
 class FellowshipsController < ApplicationController
+      layout "platform"
+
   before_action :set_fellowship, only: [:show, :edit, :update, :destroy]
 
   # GET /fellowships

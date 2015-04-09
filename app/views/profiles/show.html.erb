@@ -12,20 +12,20 @@
 
 <h3 class="text-center"><small><%= @user.description %></small></h3>
 
-<center><div class="row" style="width:50%">
+<center><div class="row profile-nums" style="width:50%">
 
 <div class="col-sm-3">
 <h5>Fellowships</h5>
-<h5><%= @user.fellowships.count%></h5>
+<h4><%= @user.fellowships.count%></h4>
 </div>
 <div class="col-sm-3">
 <h5>Following</h5>
-<h5><%= @user.follow_count %></h5>
+<h4><%= @user.follow_count %></h4>
 </div>
 
 <div class="col-sm-3">
 <h5>Followers</h5>
-<h5><%= @user.followers.count %></h5>
+<h4><%= @user.followers.count %></h4>
 </div>
 <div class="col-sm-3">
 
