@@ -43,6 +43,9 @@ class ArtifactsController < ApplicationController
 
       # @artifact.content = Nokogiri::HTML::Document.parse(HTTParty.get(URI.encode(@artifact.link.to_s))).body
       #@artifact.content =  Nokogiri::HTML(HTTParty.get("http://www.businessinsider.com/google-exec-sridhar-ramaswamy-controls-a-60-billion-business-2015-4").body.to_s).at_css("body").css('h1, h2, h3, h4, h5, h6').sort()
+     source = open('http://www.businessinsider.com/jamie-dimon-letter-to-jpmorgan-shareholders-2015-4').read
+
+      @artifact.content = Readability::Document.new(source, :tags => %w[div h1 h2 h3 h4 h5 h6 p img a ul li b i a]).content
       end
     else
       @artifact = Artifact.new(artifact_params)
