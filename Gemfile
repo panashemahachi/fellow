@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.1'
 
-gem 'sqlite3'
-
+group :development do
+	gem 'sqlite3'
+end
 gem 'sass-rails', '~> 5.0'
 
 gem 'uglifier', '>= 1.3.0'
@@ -49,3 +50,8 @@ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'acts_as_votable'
 
 gem 'acts_as_follower'
+
+group :production do
+	gem 'pg'
+	gem 'rails_12factor'
+end
