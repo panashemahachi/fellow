@@ -15,10 +15,10 @@
 <div card class="art-cards">
     <div class="image">
         <%= image_tag(artifact.image) %>
-        <span class="title"><%= artifact.title %></span>
+        <span class="title"><%= truncate(artifact.title, length: 20) %></span>
     </div>
     <div class="content">
-        <p><%=h truncate(artifact.content, length: 80) %></p>
+        <p><%=h truncate(strip_tags(artifact.content), length: 140) %></p>
     </div>
     <div class="action">
         <% artifact.tag_list.each do |t| %>
