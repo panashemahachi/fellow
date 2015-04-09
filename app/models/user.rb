@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
   has_many :fellowships, :through => :fellowshipments
   has_attached_file :profile_pic, styles: {medium: "300x300"}
   validates_attachment_content_type :profile_pic, :content_type => /\Aimage\/.*\Z/
-
+  acts_as_voter
+  acts_as_followable
+  acts_as_follower
 
   attr_accessor :login
 

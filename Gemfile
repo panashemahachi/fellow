@@ -45,3 +45,7 @@ gem 'nokogiri'
 gem 'simple_form'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
+gem 'acts_as_votable'
+
+gem 'acts_as_follower'

@@ -25,9 +25,18 @@
            <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
            <%= fa_icon "trash 2x" %>
            <% end %>
-
+<!--
            <%= fa_icon "share 2x" %>
-           <%= fa_icon "star-o 2x" %>
+-->
+           <% if artifact.liked_by current_user %>
+           <%= link_to unlike_artifact_path(artifact), method: :put do %>
+              <%= fa_icon "star 2x" %>
+                     <% end %>
+           <% else %>
+       <%= link_to like_artifact_path(artifact), method: :put do %>
+              <%= fa_icon "star-o 2x" %>
+           <% end %>
+           <% end %>
            </div>
     </div>
 </div>

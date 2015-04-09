@@ -1,20 +1,67 @@
-<div class="col-md-3">
 <!-- GBTT clean this up !!! -->
 <% if @user.profile_pic.url == '/profile_pics/original/missing.png' %>
 
-<%= image_tag(@user.default_pic, class: 'img-responsive profile-pic') %>
+<center><%= image_tag(@user.default_pic, class: 'img-responsive profile-pic') %></center>
 <% else %>
 
-<%= image_tag(@user.profile_pic.url, class: 'img-responsive profile-pic') %>
+<center><%= image_tag(@user.profile_pic.url, class: 'img-responsive profile-pic') %></center>
 
 <% end %>
+
+<h2 class="text-center"><%= @user.username %></h2>
+
+<h3 class="text-center"><small><%= @user.description %></small></h3>
+
+<center><div class="row" style="width:50%">
+
+<div class="col-sm-3">
+<h5>Fellowships</h5>
+<h5><%= @user.fellowships.count%></h5>
+</div>
+<div class="col-sm-3">
+<h5>Following</h5>
+<h5><%= @user.follow_count %></h5>
 </div>
 
-<div class="col-md-9">
-<h2><%= @user.username %></h2>
+<div class="col-sm-3">
+<h5>Followers</h5>
+<h5><%= @user.followers.count %></h5>
+</div>
+<div class="col-sm-3">
+
+<div class="profile-social">
+<h5>Social</h5>
+<% if @user.facebook_link != '' %>
+<%= link_to @user.facebook_link, target: '_blank' do %>
+	<%= fa_icon "facebook 2x"%>
+<% end %>
+<% end %>
+
+<% if @user.twitter_link != '' %>
+<%= link_to @user.twitter_link, target: '_blank'  do %>
+	<%= fa_icon "twitter 2x"%>
+<% end %>
+<% end %>
+
+<% if @user.linkedin_link != '' %>
+<%= link_to @user.linkedin_link, target: '_blank'  do %>
+	<%= fa_icon "linkedin 2x"%>
+<% end %>
+<% end %>
+</div>
+</div>
+</div>
+</center>
+<% if current_user != @user %>
+<% if !(current_user.following?(@user)) %>
+<center><%= button_to "Follow", follow_user_path(@user), class: 'btn btn-primary'%></center>
+<% else %>
+<center><%= button_to "Unfollow", unfollow_user_path(@user), class: 'btn btn-default'%></center>
+<% end %>
+<% end %>
+<!--
 
 <% if @user.id == current_user.id %>
 <%= link_to "Edit Your Profile", edit_user_registration_path%>
 
-<% end %>
-</div>
+<% end %> -->

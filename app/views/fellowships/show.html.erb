@@ -3,12 +3,28 @@
 <%= link_to root_path, style: 'display:inline; float:left', class: 'fa-red' do %>
   <%= fa_icon "arrow-left 2x"%>
 <% end %>
-<center><h2 style="display:inline" class="text-center"><%= @fellowship.fellowship_name %></h2></center>
+<center><h2 style="display:inline" class="text-center"><%= @fellowship.fellowship_name %> 
+<% if !@fellowship.public_fellowship %>
+<small>(<%= @fellowship.users.count %> members)</small>
+<% end %>
 
-<h3>Members (<%= @fellowship.users.count %>)</h3>
+</h2></center>
+<div class="row">
 
-<% @fellowship.users.recent(5).each do |m| %>
+<% if !@fellowship.public_fellowship %>
+<% @fellowship.users.limit(5).each do |m| %>
 <div class="col-md-2">
-<%= m.username %>
+<% if m.profile_pic.url == '/profile_pics/original/missing.png' %>
+
+<%= image_tag(m.default_pic, class: 'img-responsive profile-pic') %>
+<% else %>
+
+<%= image_tag(m.profile_pic.url, class: 'img-responsive profile-pic') %>
+
+<% end %>
+<h6 class="text-center"><%= m.username %></h6>
 </div>
 	<% end %>
+</div>
+	<h3 class="text-center">Artifacts</h3>
+<% end %>

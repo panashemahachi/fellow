@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408094415) do
+ActiveRecord::Schema.define(version: 20150409000017) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
@@ -32,11 +32,25 @@ ActiveRecord::Schema.define(version: 20150408094415) do
   end
 
   create_table "fellowships", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "user_id"
     t.string   "fellowship_name"
+    t.boolean  "public_fellowship"
   end
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "followable_id",                   null: false
+    t.string   "followable_type",                 null: false
+    t.integer  "follower_id",                     null: false
+    t.string   "follower_type",                   null: false
+    t.boolean  "blocked",         default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables"
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -78,10 +92,29 @@ ActiveRecord::Schema.define(version: 20150408094415) do
     t.integer  "profile_pic_file_size"
     t.datetime "profile_pic_updated_at"
     t.string   "default_pic",              default: "http://pkm.me/noprofile.png"
+    t.text     "description"
+    t.string   "facebook_link",            default: ""
+    t.string   "twitter_link",             default: ""
+    t.string   "linkedin_link",            default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

@@ -116,6 +116,13 @@ h2{
 	color:$brand_red;
 }
 
+// GBTT
+@media (max-width: 900px) {
+  .navbar-brand{
+    width: 50%;
+  }
+}
+
 $brand-primary:         $brand_red;
 @import "bootswatch/paper/variables";
 

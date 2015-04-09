@@ -61,5 +61,9 @@ $brand_grey: #ecf0f1;
 }
 
 .fa-trash:hover, .fa-star-o:hover, .fa-share:hover{
-  color: #7f8c8d;
+  color: $brand_red;
+}
+
+.art-cards{
+  height: 375px;
 }

@@ -9,7 +9,7 @@ class ArtifactsController < ApplicationController
       @artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(id: :desc)
 
     elsif params[:tag]
-      @articles = Artifact.tagged_with(params[:tag])
+      @artifacts = Artifact.tagged_with(params[:tag])
     else
       @artifacts = Artifact.where(user_id: current_user.id).order(id: :desc)
     end
@@ -79,6 +79,20 @@ class ArtifactsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def like
+    @artifact = Artifact.find(params[:id])
+    @artifact.liked_by current_user
+    redirect_to :back
+  end
+
+  def unlike
+    @artifact = Artifact.find(params[:id])
+    @artifact.unliked_by current_user
+    redirect_to :back
+  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
