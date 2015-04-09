@@ -8,6 +8,7 @@
 <% if @artifacts.count == 0 %>
 <h3 class="text-center" style="margin-top:10%;">You have no artifacts, fellow click <%= link_to "here", "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#newArtifact'%> to create one.</h3>
 <% end %>
+
     <% @artifacts.each do |artifact| %>
             <div class="col-md-4">
 <%= link_to artifact do %>
@@ -15,13 +16,22 @@
 <div card class="art-cards">
     <div class="image">
         <%= image_tag(artifact.image) %>
-        <span class="title"></span>
+        <span class="title">
+          <% if artifact.fellowship != nil %>
+          <%= artifact.fellowship.fellowship_name %>
+          <% end %>
+
+        </span>
     </div>
     <div class="content">
     <h6 class="text-center"><%= artifact.title%></h6>
         <p><%=h truncate(strip_tags(artifact.content), length: 120) %></p>
     </div>
     <div class="action">
+    <% if artifact.link_favicon != nil %>
+    <%= image_tag(artifact.link_favicon, style: 'height:25px; width:25px;') %>
+    <% end %>
+    &nbsp;
         <% artifact.tag_list.each do |t| %>
            <span class="label label-default"><%= t %></span>
            <% end %></h6>

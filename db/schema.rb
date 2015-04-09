@@ -11,18 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409064407) do
+ActiveRecord::Schema.define(version: 20150409080822) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
     t.string   "kind"
     t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
     t.string   "image"
     t.string   "link"
     t.string   "tldr"
+    t.integer  "fellowship_id"
+    t.string   "link_favicon"
   end
 
   create_table "fellowshipments", force: :cascade do |t|

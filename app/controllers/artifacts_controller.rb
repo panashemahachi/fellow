@@ -51,6 +51,7 @@ class ArtifactsController < ApplicationController
       object = LinkThumbnailer.generate(@artifact.link)
       @artifact.image = object.images.first.src.to_s
       @artifact.title = object.title
+      @artifact.link_favicon = object.favicon
       end
 
     else
@@ -114,6 +115,6 @@ class ArtifactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artifact_params
-      params.require(:artifact).permit(:title, :kind, :content, :user_id, :tag_list, :link, :image, :tldr)
+      params.require(:artifact).permit(:title, :kind, :content, :user_id, :tag_list, :link, :image, :tldr, :fellowship_id, :link_favicon)
     end
 end

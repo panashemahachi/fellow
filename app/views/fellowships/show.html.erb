@@ -10,6 +10,7 @@
 <div class="row">
 
 <% if !@fellowship.public_fellowship %>
+<!--
 <% @fellowship.users.limit(5).each do |m| %>
 <div class="col-md-2">
 <% if m.profile_pic.url == '/profile_pics/original/missing.png' %>
@@ -23,6 +24,58 @@
 <h6 class="text-center"><%= m.username %></h6>
 </div>
 	<% end %>
-</div>
-	<h3 class="text-center">Artifacts</h3>
+</div> -->
 <% end %>
+
+<!-- GBTT Put this into a partial -->
+<!--	<h3 class="text-center">Artifacts</h3> -->
+	<% Artifact.where(fellowship_id: @fellowship.id).each do |artifact| %>
+            <div class="col-md-4">
+<%= link_to artifact do %>
+
+<div card class="art-cards">
+    <div class="image">
+        <%= image_tag(artifact.image) %>
+        <span class="title">
+          <% if artifact.fellowship != nil %>
+          <%= artifact.fellowship.fellowship_name %>
+          <% end %>
+
+        </span>
+    </div>
+    <div class="content">
+    <h6 class="text-center"><%= artifact.title%></h6>
+        <p><%=h truncate(strip_tags(artifact.content), length: 120) %></p>
+    </div>
+    <div class="action">
+    <% if artifact.link_favicon != nil %>
+    <%= image_tag(artifact.link_favicon, style: 'height:25px; width:25px;') %>
+    <% end %>
+    &nbsp;
+        <% artifact.tag_list.each do |t| %>
+           <span class="label label-default"><%= t %></span>
+           <% end %></h6>
+           <div class="meta-options" style="float:right;display:none;">
+           <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
+           <%= fa_icon "trash 2x" %>
+           <% end %>
+<!--
+           <%= fa_icon "share 2x" %>
+-->
+           <% if artifact.liked_by current_user %>
+           <%= link_to unlike_artifact_path(artifact), method: :put do %>
+              <%= fa_icon "star 2x" %>
+                     <% end %>
+           <% else %>
+       <%= link_to like_artifact_path(artifact), method: :put do %>
+              <%= fa_icon "star-o 2x" %>
+           <% end %>
+           <% end %>
+           </div>
+    </div>
+</div>
+
+  <% end %>
+  <br />
+      </div>
+	<% end %>
