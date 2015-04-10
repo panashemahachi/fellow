@@ -160,6 +160,14 @@
   <%= f.text_field :tag_list, class: 'form-control', :style => 'padding-left:7px' %>
 </div>
 
+<div class="field">
+    <%= f.label "Fellowship" %><br>
+    <!-- <%= select(:artifact, :fellowship_id, current_user.fellowships.collect { |fship|
+      [fship.fellowship_name]}, {include_blank: 'None'}, class: "form-control") %>-->
+
+      <%= f.collection_select(:fellowship_id, current_user.fellowships, :id, :fellowship_name, {include_blank: true}, {class: 'form-control'}) %>
+  </div>
+
 <div class="modal-footer">
   <div class="actions">
     <%= f.submit "Create", :class => 'btn btn-primary' %>

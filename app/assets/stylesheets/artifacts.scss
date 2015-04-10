@@ -1,4 +1,4 @@
-$brand_grey: #ecf0f1;
+$brand_grey: #95a5a6;
 /* Cards */
 [card] {
   display: inline-block;
@@ -27,8 +27,11 @@ $brand_grey: #ecf0f1;
   color:#6C6C6C;
 }
 [card] .action {
+  position: absolute;
   border-top: 1px solid rgba(160, 160, 160, 0.2);
-  padding: 20px;
+  padding: 10px 20px 10px 20px;
+  bottom: 0;
+  width:100%;
 }
 [card] a {
   margin-right: 20px;
@@ -59,12 +62,17 @@ $brand_grey: #ecf0f1;
   padding-right:10px;
   color: #FFF;
 }
-.fa-trash, .fa-star-o, .fa-share{
+.fa.fa-trash, .fa.fa-star-o, .fa.fa-share{
   color: $brand_grey;
+  font-size: 20px;
 }
 
 .fa-trash:hover, .fa-star-o:hover, .fa-share:hover{
   color: $brand_red;
+}
+
+.action .fa.fa-star{
+  font-size: 20px;
 }
 
 .art-cards{

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/yourlikes', to: 'profiles#liked_artifacts'
+
   get 'profiles/show'
 
   resources :fellowships
@@ -28,6 +30,6 @@ Rails.application.routes.draw do
 
   match 'f/:id' => 'fellowships#show', :as => 'view_fellowship', via: [:get, :post]
 
-  get '/yourlikes', to: 'artifacts#liked_artifacts'
+  # GBTT horrible routing!!!!!! Can't get to artifacts controller
 
 end

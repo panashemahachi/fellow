@@ -7,7 +7,7 @@ class Artifact < ActiveRecord::Base
 	def self.search(query)
 		where("content like ?", "%#{query}%")
 	end
-
+=begin
 	# return artifacts user liked
 	def self.liked_artifacts
 		arr = []
@@ -19,4 +19,6 @@ class Artifact < ActiveRecord::Base
 
 		return arr
 	end
+=end
 end
+

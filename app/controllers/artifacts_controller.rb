@@ -41,14 +41,14 @@ class ArtifactsController < ApplicationController
     else
       @artifact = Artifact.new(artifact_params)
     end
-     
+
       if @artifact.link != nil
 
       # @artifact.content = Nokogiri::HTML::Document.parse(HTTParty.get(URI.encode(@artifact.link.to_s))).body
       #@artifact.content =  Nokogiri::HTML(HTTParty.get("http://www.businessinsider.com/google-exec-sridhar-ramaswamy-controls-a-60-billion-business-2015-4").body.to_s).at_css("body").css('h1, h2, h3, h4, h5, h6').sort()
      source = open(@artifact.link).read
 
-      @artifact.content = Readability::Document.new(source, :tags => %w[div h1 h2 h3 h4 h5 h6 p img a ul li b i a span br em], :attributes => %w[src href]).content
+      @artifact.content = Readability::Document.new(source, :tags => %w[div label ol h1 h2 h3 h4 h5 h6 p img a ul li b i a span br em code pre], :attributes => %w[src href]).content
       object = LinkThumbnailer.generate(@artifact.link)
       @artifact.image = object.images.first.src.to_s
       @artifact.title = object.title
