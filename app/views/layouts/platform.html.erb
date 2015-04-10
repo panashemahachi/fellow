@@ -53,7 +53,7 @@
               <% end %>
               </ul>
               </li>
-            <li><a href="#"><%= fa_icon "users 2x", class: 'fa-red'%></a></li>
+            <!--<li><a href="#"><%= fa_icon "users 2x", class: 'fa-red'%></a></li>-->
              <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= fa_icon "tags 2x", class: 'fa-red'%> <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -63,6 +63,11 @@
   <% end %>
               </ul>
             </li>
+            <li><%= link_to yourlikes_path do %>
+            <%= fa_icon "star 2x", class: 'fa-red'%>
+            <% end %>
+            </li>
+            
           </ul>
           <ul class="nav navbar-nav navbar-right">
 

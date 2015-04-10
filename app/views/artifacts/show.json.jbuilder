@@ -1,1 +1,1 @@
-json.extract! @artifact, :id, :title, :kind, :content, :created_at, :updated_at, :user_id
+json.extract! @artifact, :id, :title, :kind, :content, :created_at, :updated_at, :user_id, :link

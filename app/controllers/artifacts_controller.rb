@@ -7,7 +7,6 @@ class ArtifactsController < ApplicationController
   # GET /artifacts
   # GET /artifacts.json
   def index
-
     if params[:search]
       @artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(id: :desc)
 
@@ -39,8 +38,10 @@ class ArtifactsController < ApplicationController
     #@artifact = Artifact.new(artifact_params)
     if current_user
       @artifact = current_user.artifacts.build(artifact_params)
-
-        
+    else
+      @artifact = Artifact.new(artifact_params)
+    end
+     
       if @artifact.link != nil
 
       # @artifact.content = Nokogiri::HTML::Document.parse(HTTParty.get(URI.encode(@artifact.link.to_s))).body
@@ -54,9 +55,6 @@ class ArtifactsController < ApplicationController
       @artifact.link_favicon = object.favicon
       end
 
-    else
-      @artifact = Artifact.new(artifact_params)
-    end
 
     respond_to do |format|
       if @artifact.save
@@ -95,17 +93,18 @@ class ArtifactsController < ApplicationController
 
   def like
     @artifact = Artifact.find(params[:id])
-    @artifact.liked_by current_user
+    @artifact.upvote_by current_user
     redirect_to :back
   end
 
   def unlike
     @artifact = Artifact.find(params[:id])
-    @artifact.unliked_by current_user
+    @artifact.downvote_by current_user
     redirect_to :back
   end
 
-
+  def liked_artifacts
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

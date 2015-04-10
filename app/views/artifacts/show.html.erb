@@ -1,5 +1,5 @@
 <%= link_to :back, style: 'display:inline; float:left', class: 'fa-red' do %>
-  <%= fa_icon "arrow-left 2x"%>
+<%= fa_icon "arrow-left 2x"%>
 <% end %>
 <center><h3 style="display:inline" class="text-center"><%= @artifact.title %></h3></center>
 <!--
@@ -7,27 +7,38 @@
   <strong>Kind:</strong>
   <%= @artifact.kind %>
 </p>-->
-<div class="container">
+<div class="container"  style="padding-left:15%;padding-right:15%;">
+  <hr>
   <div class="cont">
-  <% if @artifact.tldr != nil %>
-  <center><blockquote>TLDR: <%= @artifact.tldr%></blockquote></center>
-  <% end %>
+    <% if @artifact.tldr != '' %>
+    <center><blockquote>TLDR: <%= @artifact.tldr%></blockquote></center>
+    <% end %>
 
-  <p><i>Added by 
+    <p><i>Added by 
 
-  <% if @artifact.user_id == current_user.id %>
-  You!
-  <% else %>
-  <% adder = User.where(id: @artifact.user_id).first.username %>
-  <%= link_to adder, profile_link_path(adder)%>
-  <% end %>
+      <% if @artifact.user_id == current_user.id %>
+      You!
+      <% else %>
+      <% adder = User.where(id: @artifact.user_id).first.username %>
+      <%= link_to adder, profile_link_path(adder)%>
+      <% end %>
 
-  </i>
-<i style="float:right"><%= link_to "View Original", @artifact.link, target: '_blank'%></i>
+    </i>
+  <!--
+   <% @artifact.tag_list.each do |t| %>
+           <span class="label label-default"><%= t %></span>
+           <% end %>-->
+           
+           <i style="float:right"><%= link_to "View Original", @artifact.link, target: '_blank'%></i>
 
-  </p>
-  <%= raw @artifact.content %>
-  </div>
-</div>
+         </p>
 
-<br style="margin-bottom:90px;"/>
+
+         <br />
+         <div>
+          <%= raw @artifact.content %>
+        </div>
+      </div>
+    </div>
+
+    <br style="margin-bottom:90px;"/>

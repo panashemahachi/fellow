@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :artifacts do 
     member do
       put "like", to: 'artifacts#like'
-      put 'unlike', to: 'artifacts#unlike'
+      put 'dislike', to: 'artifacts#unlike'
     end
   end
 
@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   post '/follow_user/:id', to: 'relationships#follow', as: :follow_user
   post '/unfollow_user/:id', to: 'relationships#unfollow', as: :unfollow_user
 
-    match 'f/:id' => 'fellowships#show', :as => 'view_fellowship', via: [:get, :post]
+  match 'f/:id' => 'fellowships#show', :as => 'view_fellowship', via: [:get, :post]
+
+  get '/yourlikes', to: 'artifacts#liked_artifacts'
 
 end

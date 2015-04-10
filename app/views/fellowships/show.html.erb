@@ -62,8 +62,8 @@
 <!--
            <%= fa_icon "share 2x" %>
 -->
-           <% if artifact.liked_by current_user %>
-           <%= link_to unlike_artifact_path(artifact), method: :put do %>
+           <% if current_user.voted_up_on? artifact %>
+           <%= link_to dislike_artifact_path(artifact), method: :put do %>
               <%= fa_icon "star 2x" %>
                      <% end %>
            <% else %>

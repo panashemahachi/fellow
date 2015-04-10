@@ -1,15 +1,4 @@
-<!--<p id="notice"><%= notice %></p>
-<div id="tag_cloud">
-  <% tag_cloud Artifact.tag_counts, %w[s m l] do |tag, css_class| %>
-    <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-  <% end %>
-</div>-->
-
-<% if @artifacts.count == 0 %>
-<h3 class="text-center" style="margin-top:10%;">You have no artifacts, fellow click <%= link_to "here", "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#newArtifact'%> to create one.</h3>
-<% end %>
-
-    <% @artifacts.each do |artifact| %>
+    <% Artifact.liked_artifacts.each do |artifact| %>
             <div class="col-md-4">
 <%= link_to artifact do %>
 
@@ -43,11 +32,11 @@
            <%= fa_icon "share 2x" %>
 -->
            <% if current_user.voted_up_on? artifact %>
-           <%= link_to dislike_artifact_path(artifact), method: :put do %>
+           <%= link_to dislike_artifact_path(artifact), method: :put, remote: :true do %>
               <%= fa_icon "star 2x" %>
                      <% end %>
            <% else %>
-       <%= link_to like_artifact_path(artifact), method: :put do %>
+       <%= link_to like_artifact_path(artifact), method: :put, remote: :true do %>
               <%= fa_icon "star-o 2x" %>
            <% end %>
            <% end %>
@@ -59,5 +48,3 @@
   <br />
       </div>
   <% end %>
-
-
