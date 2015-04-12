@@ -154,6 +154,12 @@ h2{
   margin-bottom: 0;
 }
 
+// Remove button outline on click
+button:focus, .btn:focus {
+    outline:none !important;
+}
+
+
 $brand-primary:         $brand_color;
 @import "bootswatch/paper/variables";
 
