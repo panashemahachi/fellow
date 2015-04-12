@@ -64,3 +64,6 @@ gem 'omniauth'
 
 gem 'omniauth-twitter'
 
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
+
+

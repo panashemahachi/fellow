@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411074820) do
+ActiveRecord::Schema.define(version: 20150412120234) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
@@ -64,6 +64,16 @@ ActiveRecord::Schema.define(version: 20150411074820) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
+  create_table "sessions", force: :cascade do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/rails/activerecord-session_store.git
+  revision: 2d9517d0f26281e76e80e63ca202fb7dafbe27cb
+  specs:
+    activerecord-session_store (0.1.1)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: cdbc05eb508ad18a1fff746d2c4fa58c177ee837
   specs:
@@ -232,6 +241,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-session_store!
   acts-as-taggable-on (~> 3.4)
   acts_as_follower
   acts_as_votable
