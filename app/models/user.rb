@@ -33,12 +33,22 @@ def self.find_for_database_authentication(warden_conditions)
 
   def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    user.email = auth.info.email
+    #user.email = auth.info.email No email from twitter oauth :(
     user.password = Devise.friendly_token[0,20]
     user.username = auth.info.nickname
+    user.description = auth.info.description
+    user.twitter_link = auth.info.urls.twitter
     #user.image = auth.info.image # assuming the user model has an image
   end
 end
+
+def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.twitter_data"] && session["devise.twitter_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
+    end
+  end
 
 
 end
