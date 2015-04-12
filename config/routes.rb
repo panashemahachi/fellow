@@ -4,9 +4,14 @@ Rails.application.routes.draw do
 
   get 'profiles/show'
 
-  resources :fellowships
+  resources :fellowships do
+    member do
+      put 'join', to: 'fellowships#join'
+      put 'leave', to: 'fellowships#leave'
+    end
+  end
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :artifacts do 
     member do
@@ -23,7 +28,7 @@ Rails.application.routes.draw do
   
   get 't/:tag', to: 'artifacts#index', as: :tag
 
-  get '/:id', to: 'profiles#show', as: :profile_link
+  get '/@:id', to: 'profiles#show', as: :profile_link
 
   post '/follow_user/:id', to: 'relationships#follow', as: :follow_user
   post '/unfollow_user/:id', to: 'relationships#unfollow', as: :unfollow_user

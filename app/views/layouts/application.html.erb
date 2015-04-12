@@ -3,7 +3,6 @@
 <head>
   <title>fellow</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= favicon_link_tag 'logo_key.png' %>
   <%= csrf_meta_tags %>
 </head>
@@ -33,7 +32,7 @@
 <%= yield %>
   <footer class="footer">
       <div class="container">
-        <h6 class="text-muted text-center">&copy; 2015 Bubble Gum</h6>
+        <h6 class="text-muted text-center">&copy; 2015 Fellow.  You'll love being a "fellow"</h6>
       </div>
     </footer>
 
@@ -116,6 +115,6 @@
 </div>
 </div>
 </div>
-
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

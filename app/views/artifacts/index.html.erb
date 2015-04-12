@@ -10,7 +10,7 @@
 <% end %>
 
     <% @artifacts.each do |artifact| %>
-            <div class="col-sm-4">
+            <div class="col-md-4">
 <%= link_to artifact do %>
 
 <div card class="art-cards">
@@ -39,9 +39,12 @@
            <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
            <%= fa_icon "trash" %>
            <% end %>
-<!--
+
+<% d_target = '#shareArtifact_' + artifact.id.to_s %>
+<%= link_to "#", class: 'login-text', :'data-toggle' => 'modal', 'data-target' => d_target do%>
            <%= fa_icon "share" %>
--->
+           <% end %>
+
            <% if current_user.voted_up_on? artifact %>
            <%= link_to dislike_artifact_path(artifact), method: :put do %>
               <%= fa_icon "star" %>
@@ -55,9 +58,43 @@
     </div>
 </div>
 
+
+      <!-- GBTT EXTEMELY BAD HAVING MODAL HERE, IT LOADS FOR EVERY ITEM.  FIND A WAY TO JUST HAVE ONE AND PASS CURRENT ARTIFACT
+            TO IT IN THE INDEX ACTION!!!!!! -->
+
+        <div class="modal fade" id='<%= "shareArtifact_#{artifact.id}" %>'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Share to a fellowship</h4>
+      </div>
+  <div class="modal-body">
+
+  <%= simple_form_for(artifact) do |f|  %>
+    <div class="field">
+    <%= f.label :fellowship %><br>
+<%= f.collection_select(:fellowship_id, current_user.fellowships, :id, :fellowship_name, {include_blank: true}, {class: 'form-control'}) %>
+  </div>
+<div class="modal-footer">
+  <div class="actions">
+    <%= f.submit "Share", :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
+
+  </div>
+  </div>
+
+</div>
+</div>
+</div>
   <% end %>
   <br />
       </div>
+
+
   <% end %>
+
+
 
 

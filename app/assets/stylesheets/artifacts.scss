@@ -3,7 +3,7 @@ $brand_grey: #95a5a6;
 [card] {
   display: inline-block;
   vertical-align: top;
-  width: 350px;
+  width: 100%;
   position: relative;
   overflow: hidden;
   margin: 8px 0 16px 0;
@@ -68,7 +68,7 @@ $brand_grey: #95a5a6;
 }
 
 .fa-trash:hover, .fa-star-o:hover, .fa-share:hover{
-  color: $brand_red;
+  color: $brand_color;
 }
 
 .action .fa.fa-star{
@@ -80,9 +80,18 @@ $brand_grey: #95a5a6;
 }
 
 .title{
-  background-color:rgba(231, 76, 60,0.5);
+  //background-color:rgba(231, 76, 60,0.5);
+  background-color: rgba(26, 188, 156,0.5)
 }
 .cont p, .cont li{
   font-family: "Open Sans";
     font-size: 1.5em;
 }
+
+.artifact-content img{
+  display:block;
+  max-width:100%;
+  height:auto
+}
+
+

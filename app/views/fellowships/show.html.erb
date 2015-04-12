@@ -1,12 +1,33 @@
+<div class="col-md-2">
+
 <%= link_to root_path, style: 'display:inline; float:left', class: 'fa-red' do %>
   <%= fa_icon "arrow-left 2x"%>
 <% end %>
+</div>
+
+<div class="col-md-8">
+
 <center><h2 style="display:inline" class="text-center"><%= @fellowship.fellowship_name %> 
 <% if !@fellowship.public_fellowship %>
 <small>(<%= @fellowship.users.count %> members)</small>
 <% end %>
 
 </h2></center>
+</div>
+
+<div class="col-md-2">
+
+<% if !@fellowship.public_fellowship %>
+  <% if current_user.fellowships.include?(@fellowship) %>
+    <%= button_to "Leave fellowship", leave_fellowship_path(@fellowship), method: :put, class: 'btn btn-danger', style: 'margin-top:7px;'%>
+
+    <% else %>
+    <%= button_to "Join fellowship", join_fellowship_path(@fellowship), method: :put, class: 'btn btn-primary', style: 'margin-top:7px;'%>
+  <% end %>
+<% end %>
+</div>
+
+
 <div class="row">
 
 <% if !@fellowship.public_fellowship %>

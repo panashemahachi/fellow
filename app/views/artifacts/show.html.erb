@@ -1,13 +1,14 @@
 <%= link_to :back, style: 'display:inline; float:left', class: 'fa-red' do %>
 <%= fa_icon "arrow-left 2x"%>
 <% end %>
-<center><h3 style="display:inline" class="text-center"><%= @artifact.title %></h3></center>
 <!--
 <p>
   <strong>Kind:</strong>
   <%= @artifact.kind %>
 </p>-->
 <div class="container"  style="padding-left:15%;padding-right:15%;">
+<center><h3 style="display:inline" class="text-center"><%= @artifact.title %></h3></center>
+
   <hr>
   <div class="cont">
     <% if @artifact.tldr != '' %>
@@ -35,7 +36,7 @@
 
 
          <br />
-         <div>
+         <div class="artifact-content">
           <%= raw @artifact.content %>
         </div>
       </div>

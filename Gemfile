@@ -59,3 +59,8 @@ end
 gem "ruby-readability", :require => 'readability'
 
 gem 'link_thumbnailer'
+
+gem 'omniauth'
+
+gem 'omniauth-twitter'
+

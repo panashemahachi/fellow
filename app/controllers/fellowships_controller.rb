@@ -67,6 +67,19 @@ class FellowshipsController < ApplicationController
   def members
   end
 
+  def join
+    @fellowship = Fellowship.find(params[:id])
+    current_user.fellowships << @fellowship
+    redirect_to :back
+  end
+
+  def leave
+    @fellowship = Fellowship.find(params[:id])
+    fellowship_arr = Array(@fellowship)
+    current_user.fellowships -= fellowship_arr
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fellowship

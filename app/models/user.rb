@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :authentication_keys => [:login], :omniauth_providers => [:twitter]
 
   has_many :artifacts
   has_many :fellowshipments
@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   acts_as_followable
   acts_as_follower
 
+  # TODO: validate format of email
   attr_accessor :login
 
 def self.find_for_database_authentication(warden_conditions)
@@ -29,5 +30,15 @@ def self.find_for_database_authentication(warden_conditions)
   :uniqueness => {
     :case_sensitive => false
   }
+
+  def self.from_omniauth(auth)
+  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    user.email = auth.info.email
+    user.password = Devise.friendly_token[0,20]
+    user.username = auth.info.nickname
+    #user.image = auth.info.image # assuming the user model has an image
+  end
+end
+
 
 end

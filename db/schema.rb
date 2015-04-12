@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409080822) do
+ActiveRecord::Schema.define(version: 20150411074820) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 20150409080822) do
 
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables"
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows"
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -99,6 +109,8 @@ ActiveRecord::Schema.define(version: 20150409080822) do
     t.string   "facebook_link",            default: ""
     t.string   "twitter_link",             default: ""
     t.string   "linkedin_link",            default: ""
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

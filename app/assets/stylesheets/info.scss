@@ -4,6 +4,8 @@ $brand_black: #2B3137;
 $brand_blue: #2196F3;
 $brand_red: #CE0A13;
 $brand_green: #00CD82;
+$brand_color: #1abc9c;
+$twitter_blue: #55acee;
 .logo{
 	width:50%;
 }
@@ -98,7 +100,7 @@ body {
 }
 
 #tagline{
-    color:$brand_red;
+    color:$brand_color;
 }
 
 .home{
@@ -119,6 +121,13 @@ body {
 
 .login-text a{
 
-  color: $brand_red !important;
+  color: $brand_color !important;
   
+}
+
+.btn-custom, .btn-custom:hover{
+  border-radius: 25px;
+  background-color: $twitter_blue;
+  color:white;
+  text-transform: capitalize;
 }

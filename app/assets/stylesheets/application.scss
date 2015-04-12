@@ -6,6 +6,8 @@
 
 $brand_red: #CE0A13;
 $brand_green: #00CD82;
+$brand_color: #1abc9c;
+
 
 h2{
 	font-family: "Roboto";
@@ -100,7 +102,7 @@ h2{
     right: 15px;
     color: #fff;
     border-radius: 25px;
-	background-color: $brand_red;
+	background-color: $brand_color;
 	border-color: rgba(0,0,0,0);
 	opacity: 1;
 	padding: 10px 17px;
@@ -116,18 +118,25 @@ h2{
 }
 
 .fa-red{
-	color:$brand_red;
+	color:$brand_color;
 }
 
 // GBTT
 @media (max-width: 900px) {
-  .navbar-brand{
-    width: 50%;
-  }
+
+    .navbar-brand{
+        width: 50%;
+    }
 }
 
+
+.alert-success{
+    background-color: $brand_color !important; 
+}
+
+
 .red-bar{
-    background-color: $brand_red;
+    background-color: $brand_color;
     position:fixed;
     top:0;
     height:20px;
@@ -145,7 +154,7 @@ h2{
   margin-bottom: 0;
 }
 
-$brand-primary:         $brand_red;
+$brand-primary:         $brand_color;
 @import "bootswatch/paper/variables";
 
 @import "bootstrap";

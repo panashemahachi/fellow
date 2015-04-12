@@ -1,8 +1,8 @@
 class ArtifactsController < ApplicationController
 
     layout "platform"
-
   before_action :set_artifact, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_owner!, only: [:show]
 
   # GET /artifacts
   # GET /artifacts.json
@@ -11,7 +11,7 @@ class ArtifactsController < ApplicationController
       @artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(id: :desc)
 
     elsif params[:tag]
-      @artifacts = Artifact.tagged_with(params[:tag])
+      @artifacts = Artifact.tagged_with(params[:tag]).where(user_id: current_user.id)
     else
       @artifacts = Artifact.where(user_id: current_user.id).order(id: :desc)
     end
@@ -48,7 +48,7 @@ class ArtifactsController < ApplicationController
       #@artifact.content =  Nokogiri::HTML(HTTParty.get("http://www.businessinsider.com/google-exec-sridhar-ramaswamy-controls-a-60-billion-business-2015-4").body.to_s).at_css("body").css('h1, h2, h3, h4, h5, h6').sort()
      source = open(@artifact.link).read
 
-      @artifact.content = Readability::Document.new(source, :tags => %w[div label ol h1 h2 h3 h4 h5 h6 p img a ul li b i a span br em code pre], :attributes => %w[src href]).content
+      @artifact.content = Readability::Document.new(source, :tags => %w[div label ol h1 h2 h3 h4 h5 h6 p img a ul li b i a span br em code pre blockquote td tr th table tbody t], :attributes => %w[src href]).content
       object = LinkThumbnailer.generate(@artifact.link)
       @artifact.image = object.images.first.src.to_s
       @artifact.title = object.title
@@ -72,7 +72,10 @@ class ArtifactsController < ApplicationController
   def update
     respond_to do |format|
       if @artifact.update(artifact_params)
-        format.html { redirect_to @artifact, notice: 'Artifact was successfully updated.' }
+
+        # Changed to redirect back
+        #format.html { redirect_to @artifact, notice: 'Artifact was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Artifact was successfully updated.' }
         format.json { render :show, status: :ok, location: @artifact }
       else
         format.html { render :edit }
@@ -115,5 +118,17 @@ class ArtifactsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def artifact_params
       params.require(:artifact).permit(:title, :kind, :content, :user_id, :tag_list, :link, :image, :tldr, :fellowship_id, :link_favicon)
+    end
+
+    def authenticate_owner!
+
+      # Check to see if the person is the owner.  If not proceed
+      if current_user.id != @artifact.user_id
+
+        # If the person with the link isn't part of a fellowship with the article, then they don't have access
+        if not current_user.fellowships.include?(@artifact.fellowship)
+          raise ActionController::RoutingError.new('Not Found')
+        end
+      end
     end
 end
