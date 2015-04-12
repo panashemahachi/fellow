@@ -12,6 +12,8 @@
     <%= f.email_field :email, class: 'form-control' %>
   </div>
 
+<!-- Only show if password is required -->
+<% if f.object.password_required? %>
   <div class="field">
     <%= f.label :password %>
     <% if @validatable %>
@@ -24,6 +26,8 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
   </div>
+
+<% end %>
 
 <div class="form-group">
  <%= f.label "What would you like others to know about you?", class: "control-label", for: 'focusedInput' %><br />

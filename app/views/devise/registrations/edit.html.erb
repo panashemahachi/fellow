@@ -20,6 +20,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
+<% if f.object.encrypted_password.present? %>
   <div class="form-group">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
     <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
@@ -29,7 +30,7 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
   </div>
-
+<% end %>
 <br />
 <div class="form-group">
  <%= f.label "Facebook Link", class: "control-label", for: 'focusedInput' %> <i>(start with http:// please)</i><br />
@@ -55,12 +56,15 @@
   <%= f.label "Profile Image" %><br />
   <%= f.file_field :profile_pic %>
   </div>
+  <!--
+<% if f.object.encrypted_password.present? %>
 
     <div class="form-group">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
   </div>
   
+  <% end %> -->
 
   <div class="actions">
   <%= f.submit "Update", class: 'btn btn-primary', style: 'float:right; margin-top:10px;'%>

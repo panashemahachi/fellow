@@ -16,11 +16,14 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password, :profile_pic, :description, :facebook_link, :twitter_link, :linkedin_link) }
   end
 
+ def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
 
 
 def layout_by_resource
   if devise_controller?
-      if action_name == 'new'
+      if action_name == 'new' or action_name == 'create' 
       'info'
     else
       'platform'

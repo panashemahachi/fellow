@@ -38,18 +38,36 @@ def self.find_for_database_authentication(warden_conditions)
     user.username = auth.info.nickname
     user.description = auth.info.description
     user.twitter_link = auth.info.urls.twitter
-    #user.image = auth.info.image # assuming the user model has an image
+    #user.image = auth.info.image
   end
 end
-
-def self.new_with_session(params, session)
-    super.tap do |user|
+  def self.new_with_session(params, session)
       if session["devise.twitter_data"]
-        #user.email = data["email"] if user.email.blank?
-        user.attributes = params
+        new(session["devise.twitter_data"], without_protection: true) do |user|
+          user.attributes = params
+          user.valid?
+        end
+      else
+        super
       end
+
     end
+
+  # Make password not required with twitter login
+  def password_required?
+    super && provider.blank?
   end
 
+# Not require password when updating info on your profile
+
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    
+    else
+      super
+    end
+
+  end
 
 end

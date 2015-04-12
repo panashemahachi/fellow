@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", registrations: 'registrations'}
 
   resources :artifacts do 
     member do
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   post '/follow_user/:id', to: 'relationships#follow', as: :follow_user
   post '/unfollow_user/:id', to: 'relationships#unfollow', as: :unfollow_user
 
-  match 'f/:id' => 'fellowships#show', :as => 'view_fellowship', via: [:get, :post]
+  match 'f/:id' => 'fellowships#show', as: 'view_fellowship', via: [:get, :post]
 
   # GBTT horrible routing!!!!!! Can't get to artifacts controller
 
