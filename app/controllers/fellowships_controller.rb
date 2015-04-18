@@ -12,6 +12,10 @@ class FellowshipsController < ApplicationController
   # GET /fellowships/1
   # GET /fellowships/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /fellowships/new
