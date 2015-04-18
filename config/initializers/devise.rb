@@ -12,6 +12,8 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'friends@joinfellow.com'
 
+  config.secret_key = '3458966c0c2e81888abcb5a95015cc866fa2aa84caebca0da4f0f9f13216f5c7b26e229e41391c68ab23ad05d9ce72f7aa6099b26eda816cf9574bd3939941d8'
+
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
