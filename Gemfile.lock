@@ -120,6 +120,7 @@ GEM
     formtastic_i18n (0.3.0)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
+    google-analytics-rails (0.0.6)
     guess_html_encoding (0.0.11)
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
@@ -276,6 +277,7 @@ DEPENDENCIES
   devise
   font-awesome-rails
   friendly_id
+  google-analytics-rails
   httparty
   jbuilder (~> 2.0)
   jquery-rails

@@ -4,7 +4,7 @@
   <title>fellow</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
+  <%= analytics_init if Rails.env.production? %>
   <%= favicon_link_tag 'logo_key2.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <%= favicon_link_tag 'logo_key2.png' %>
   <%= csrf_meta_tags %>

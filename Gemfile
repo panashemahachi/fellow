@@ -71,3 +71,5 @@ gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 gem 'friendly_id'
 
 gem 'will_paginate'
+
+gem 'google-analytics-rails'
