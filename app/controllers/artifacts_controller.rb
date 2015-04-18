@@ -8,12 +8,20 @@ class ArtifactsController < ApplicationController
   # GET /artifacts.json
   def index
     if params[:search]
-      @artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(id: :desc)
+      #@artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(id: :desc).page(params[:page])
+
+      @artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(created_at: :desc).page(params[:page]).per_page(9)
 
     elsif params[:tag]
-      @artifacts = Artifact.tagged_with(params[:tag]).where(user_id: current_user.id)
+      @artifacts = Artifact.tagged_with(params[:tag]).where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per_page(9)
     else
-      @artifacts = Artifact.where(user_id: current_user.id).order(id: :desc)
+      @artifacts = Artifact.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per_page(9)
+      respond_to do |format|
+      # get artifacts and paginate on HTML
+      format.html
+      format.js
+      format.json {@artifacts = Artifact.where(user_id: current_user.id).order(created_at: :desc)}
+    end
     end
   end
 
