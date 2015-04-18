@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.1.8'
 
 group :development do
 	gem 'sqlite3'
@@ -26,6 +26,8 @@ group :development, :test do
 
   gem 'spring'
 end
+
+gem 'activeadmin', github: 'activeadmin'
 
 gem 'devise'
 
@@ -67,4 +69,6 @@ gem 'omniauth-twitter'
 gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 gem 'friendly_id'
+
+
 
