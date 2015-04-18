@@ -52,16 +52,10 @@
 </div>
 </div>
 </center>
-<% if current_user != @user %>
+<% if current_user and current_user != @user %>
 <% if !(current_user.following?(@user)) %>
 <center><%= button_to "Follow", follow_user_path(@user), class: 'btn btn-primary'%></center>
 <% else %>
 <center><%= button_to "Unfollow", unfollow_user_path(@user), class: 'btn btn-default'%></center>
 <% end %>
 <% end %>
-<!--
-
-<% if @user.id == current_user.id %>
-<%= link_to "Edit Your Profile", edit_user_registration_path%>
-
-<% end %> -->

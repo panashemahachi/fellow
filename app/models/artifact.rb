@@ -7,6 +7,12 @@ class Artifact < ActiveRecord::Base
 	def self.search(query)
 		where("content like ?", "%#{query}%")
 	end
+
+	# change url
+	def to_param
+		"#{id} #{title}".parameterize
+	end
+
 =begin
 	# return artifacts user liked
 	def self.liked_artifacts

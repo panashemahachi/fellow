@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412120234) do
+ActiveRecord::Schema.define(version: 20150417235018) do
 
   create_table "artifacts", force: :cascade do |t|
     t.string   "title"
@@ -25,7 +25,10 @@ ActiveRecord::Schema.define(version: 20150412120234) do
     t.string   "tldr"
     t.integer  "fellowship_id"
     t.string   "link_favicon"
+    t.string   "slug"
   end
+
+  add_index "artifacts", ["slug"], name: "index_artifacts_on_slug"
 
   create_table "fellowshipments", force: :cascade do |t|
     t.integer  "user_id"

@@ -4,7 +4,13 @@ class ProfilesController < ApplicationController
   def show
   	@user = User.find_by_username(params[:id])
 
-  	if @user
+  	if not(current_user)
+  		respond_to do |format|
+      		format.html {render :layout => 'join'}
+    	end
+
+
+  	elsif @user
   		render action: :show
   	end
   end

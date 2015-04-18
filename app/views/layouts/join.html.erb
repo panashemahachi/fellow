@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>fellow</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= favicon_link_tag 'logo_key2.png', rel: 'apple-touch-icon', type: 'image/png' %>
+  <%= favicon_link_tag 'logo_key2.png' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to image_tag('logo2_med.png', class: 'navbar-brand'), root_path %> 
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= button_to "Login", new_user_session_path, class: 'btn btn-default', style: 'margin:15px 5px 5px 5px;' %></li>
+          <li><%= button_to "Sign Up", new_user_registration_path, class: 'btn btn-primary', style: 'margin:15px 5px 5px 5px;'%></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container" style="padding-top:60px">
+    <%= yield %>
+  </div>
+</body>
+</html>
