@@ -78,4 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   GA.tracker = "UA-61915279-1"
+
+  config.assets.precompile += ['active_admin.js', 'active_admin.css']
+
 end
