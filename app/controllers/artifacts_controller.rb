@@ -66,9 +66,10 @@ class ArtifactsController < ApplicationController
       ### Send email to people in fellowship
       if @artifact.fellowship != nil
 
-
+        ###### GBTTT: Hacky fix to get id of artifact since it doesn't seem to be set by this time
+        projected_id = Artifact.last.id + 1
         FellowshipAddition.added_to_fellowship(Fellowship.where(id: @artifact.fellowship.id).first.users, 
-          @artifact, Fellowship.where(id: @artifact.fellowship.id).first.fellowship_name, current_user.id).deliver
+          @artifact, Fellowship.where(id: @artifact.fellowship.id).first.fellowship_name, current_user.id, projected_id).deliver
       end
 
 
