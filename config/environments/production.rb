@@ -81,9 +81,10 @@ Rails.application.configure do
 
   config.assets.precompile += ['active_admin.js', 'active_admin.css']
 
-  config.action_mailer.default_url_options = { host: 'joinfellow.com'}
+  config.action_mailer.default_url_options = { host: 'serene-retreat-3166.herokuapp.com'}
 
   config.action_mailer.delivery_method = :smtp
+
 =begin   
    config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
@@ -94,15 +95,26 @@ Rails.application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
    }
-=end
+
 
  config.action_mailer.smtp_settings = {
     address: ENV['POSTMARK_SMTP_SERVER'],
     port: 25,
     domain: 'serene-retreat-3166.herokuapp.com',
-    authentication: 'plain',
+    authentication: :plain,
     enable_starttls_auto: true,
     user_name: ENV['POSTMARK_API_TOKEN'],
     password: ENV['POSTMARK_API_TOKEN']
    }
+=end
+
+   ActionMailer::Base.smtp_settings = {
+  :user_name => ENV["SENDGRID_USERNAME"],
+  :password => ENV["SENDGRID_PASSWORD"],
+  :domain => 'serene-retreat-3166.herokuapp.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
 end
