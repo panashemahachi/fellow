@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>fellow</title>
+  <title>Fellow | Your Dashboard</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= analytics_init if Rails.env.production? %>
 <%= favicon_link_tag 'logo_key2.png', rel: 'apple-touch-icon', type: 'image/png' %>
   <%= favicon_link_tag 'logo_key2.png' %>
   <%= csrf_meta_tags %>
+  <meta name="description" content="Save and share articles with your friends on Fellow">
+  <meta name="Keywords" content="save and share, articles, news, bookmark, bookmarks, read it later, save for later, read later, fellow, social news">
 </head>
 <body>
 
@@ -47,12 +49,12 @@
            <li class="dropdown-header">Public Fellowships</li>
 
            <% Fellowship.where(public_fellowship: true).each do |f| %>
-           <li><%= link_to f.fellowship_name, view_fellowship_path(f.id)%></li>
+           <li><%= link_to f.fellowship_name, view_fellowship_path(f.id, f.fellowship_name)%></li>
            <% end %>
               <li class="dropdown-header">Your Fellowships</li>
               <% Fellowship.all.each do |f| %>
               <% if f.users.include?(current_user) %>
-              <li><%= link_to f.fellowship_name, view_fellowship_path(f.id) %></li>
+              <li><%= link_to f.fellowship_name, view_fellowship_path(f.id, f.fellowship_name) %></li>
               <% end %>
               <% end %>
               </ul>

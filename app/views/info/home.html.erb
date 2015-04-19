@@ -1,21 +1,22 @@
 <div class="home">
 
-<div class="container">
+	<div class="container">
 
-<div class="row">
-<center><%= image_tag('logo2_med.png', class: 'img-responsive logo', style: 'display:inline')%> </center>
-</div>
-<div class="row">
-<center>	<h3 id="tagline">curate, learn, follow</h3>
-					<!-- <%= button_tag "Sign Up", class: 'btn btn-primary', :'data-toggle' => 'modal', :'data-target' => '#signUpModal',method: 'get'%> -->
+		<div class="row">
+			<center><%= image_tag('logo2_med.png', class: 'img-responsive logo', style: 'display:inline')%> </center>
+		</div>
+		<div class="row">
+			<center>	<!--<h3 id="tagline">curate, learn, follow</h3> -->
+				<h3 id="tagline">save and share artifacts with friends</h3>
+				<!-- <%= button_tag "Sign Up", class: 'btn btn-primary', :'data-toggle' => 'modal', :'data-target' => '#signUpModal',method: 'get'%> -->
 
-					 <%= button_to user_omniauth_authorize_path(:twitter), class: 'btn btn-custom' do %>
-					 <%= fa_icon "twitter", style: 'padding-right:2px' %> Sign in with Twitter
-					 <% end %>
-					 <p> or <%= link_to "Sign Up with Email", "#", :'data-toggle' => 'modal', :'data-target' => '#signUpModal'%>
-<br />
-					  or <%= link_to "Sign In", "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#loginModal'%>
-					  </p></center>
-					  </div>
-</div>
-</div>
+				<%= button_to user_omniauth_authorize_path(:twitter), class: 'btn btn-custom' do %>
+				<%= fa_icon "twitter", style: 'padding-right:2px' %> Sign in with Twitter
+				<% end %>
+				<p> or <%= link_to "Sign Up with Email", "#", :'data-toggle' => 'modal', :'data-target' => '#signUpModal'%>
+					<br />
+					or <%= link_to "Sign In", "#", class: 'login-text', :'data-toggle' => 'modal', :'data-target' => '#loginModal'%>
+				</p></center>
+			</div>
+		</div>
+	</div>

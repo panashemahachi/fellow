@@ -33,6 +33,9 @@ class FellowshipsController < ApplicationController
     @fellowship = Fellowship.new(fellowship_params)
     @fellowship.users << current_user
 
+    # Capitalize fellowship name
+    @fellowship.fellowship_name = @fellowship.fellowship_name.titleize
+
     respond_to do |format|
       if @fellowship.save
         format.html { redirect_to @fellowship, notice: 'Fellowship was successfully created.' }
