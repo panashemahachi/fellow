@@ -66,9 +66,9 @@ class ArtifactsController < ApplicationController
       ### Send email to people in fellowship
       if @artifact.fellowship != nil
 
-        
+
         FellowshipAddition.added_to_fellowship(Fellowship.where(id: @artifact.fellowship.id).first.users, 
-          @artifact, Fellowship.where(id: @artifact.fellowship.id).first.fellowship_name).deliver
+          @artifact, Fellowship.where(id: @artifact.fellowship.id).first.fellowship_name, current_user.id).deliver
       end
 
 

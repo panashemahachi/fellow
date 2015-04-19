@@ -2,7 +2,7 @@ class FellowshipAddition < ActionMailer::Base
   default from: "friends@joinfellow.com"
 
   # adder is person who addded the artifact
-  def added_to_fellowship(fellowship_members, actual_artifact, fellowship_name)
+  def added_to_fellowship(fellowship_members, actual_artifact, fellowship_name, c_user_id)
     @greeting = "Hi"
 
     # Pass as instance variable
@@ -25,7 +25,9 @@ class FellowshipAddition < ActionMailer::Base
 
     # Send to all fellowship members
     fellowship_members.each do |fm|
-      mail to: fm.email, subject: "@#{@adder} wants you to read an artifact on Fellow."
+      if fm.id != c_user_id
+        mail to: fm.email, subject: "@#{@adder} wants you to read an artifact on Fellow."
+      end
     end
   end
 end
