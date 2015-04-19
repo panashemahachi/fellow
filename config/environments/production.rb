@@ -81,4 +81,28 @@ Rails.application.configure do
 
   config.assets.precompile += ['active_admin.js', 'active_admin.css']
 
+  config.action_mailer.default_url_options = { host: 'joinfellow.com'}
+
+  config.action_mailer.delivery_method = :smtp
+=begin   
+   config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'joinfellow.com',
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"]
+   }
+=end
+
+ config.action_mailer.smtp_settings = {
+    address: ENV['POSTMARK_SMTP_SERVER'],
+    port: 25,
+    domain: 'serene-retreat-3166.herokuapp.com',
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    user_name: ENV['POSTMARK_API_TOKEN'],
+    password: ENV['POSTMARK_API_TOKEN']
+   }
 end

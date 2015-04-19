@@ -37,6 +37,5 @@ Rails.application.routes.draw do
 
   match 'f/:id' => 'fellowships#show', as: 'view_fellowship', via: [:get, :post]
 
-  # GBTT horrible routing!!!!!! Can't get to artifacts controller
 
 end

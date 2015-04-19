@@ -63,6 +63,14 @@ class ArtifactsController < ApplicationController
       @artifact.link_favicon = object.favicon
       end
 
+      ### Send email to people in fellowship
+      if @artifact.fellowship != nil
+
+        
+        FellowshipAddition.added_to_fellowship(Fellowship.where(id: @artifact.fellowship.id).first.users, 
+          @artifact, Fellowship.where(id: @artifact.fellowship.id).first.fellowship_name).deliver
+      end
+
 
     respond_to do |format|
       if @artifact.save

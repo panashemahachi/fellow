@@ -73,3 +73,7 @@ gem 'friendly_id'
 gem 'will_paginate'
 
 gem 'google-analytics-rails'
+
+gem 'mail'
+
+gem 'postmark'
