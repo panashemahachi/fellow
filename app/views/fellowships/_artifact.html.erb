@@ -16,11 +16,7 @@
     <div class="content">
     <h6 class="text-center"><%= artifact.title%></h6>
         <p><%=h truncate(strip_tags(artifact.content), length: 120) %></p>
-        <% if article.try(:highlight).try(:text) %>
-        <% article.highlight.text.each do |snippet| %>
-          <p><%= snippet.html_safe %>...</p>
-        <% end %>
-      <% end %>
+        
     </div>
     <div class="action">
     <% if artifact.link_favicon != nil %>
