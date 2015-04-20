@@ -10,7 +10,10 @@ class ArtifactsController < ApplicationController
     if params[:search]
       #@artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(id: :desc).page(params[:page])
 
-      @artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(created_at: :desc).page(params[:page]).per_page(9)
+      #@artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(created_at: :desc).page(params[:page]).per_page(9)
+    
+    @artifacts = Artifact.search(params[:search]).records.page(params[:page]).per_page(9)
+    #@artifacts = @artifacts.page(params[:page]).per_page(9)
 
     elsif params[:tag]
       @artifacts = Artifact.tagged_with(params[:tag]).where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per_page(9)
@@ -128,6 +131,8 @@ class ArtifactsController < ApplicationController
 
   def liked_artifacts
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -74,3 +74,6 @@ gem 'will_paginate'
 
 gem 'google-analytics-rails'
 
+gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails'
+

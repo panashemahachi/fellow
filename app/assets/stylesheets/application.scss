@@ -187,6 +187,10 @@ button:focus, .btn:focus {
     margin-top: 5px;
 }
 
+em {
+  background: yellow;
+}
+
 $brand-primary:         $brand_color;
 @import "bootswatch/paper/variables";
 

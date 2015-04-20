@@ -1,0 +1,19 @@
+<h1>Artifact Search</h1>
+ 
+<%= form_for search_path, method: :get do |f| %>
+  <p>
+    <%= f.label "Search for" %>
+    <%= text_field_tag :q, params[:q] %>
+    <%= submit_tag "Go", name: nil %>
+  </p>
+<% end %>
+ 
+<ul>
+  <% @artifacts.each do |artifact| %>
+    <li>
+      <h3>
+        <%= link_to artifact.title, controller: "artifacts", action: "show", id: artifact.id%>
+      </h3>
+    </li>
+  <% end %>
+</ul>

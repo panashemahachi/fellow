@@ -30,12 +30,14 @@ Rails.application.routes.draw do
   
   get 't/:tag', to: 'artifacts#index', as: :tag
 
-  get '/:id', to: 'profiles#show', as: :profile_link
+  get '@:id', to: 'profiles#show', as: :profile_link
 
   post '/follow_user/:id', to: 'relationships#follow', as: :follow_user
   post '/unfollow_user/:id', to: 'relationships#unfollow', as: :unfollow_user
 
   match 'f/:id-(:fellowship_name)' => 'fellowships#show', as: 'view_fellowship', via: [:get, :post]
+
+  get '/search', to: 'search#search'
 
 
 end
