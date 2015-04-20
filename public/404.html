@@ -7,7 +7,15 @@
 .error-template {padding: 40px 15px;text-align: center;}
 .error-actions {margin-top:15px;margin-bottom:15px;}
 .error-actions .btn { margin-right:10px; }
+body{
+  background-color: #1abc9c;
+  }
+  h1, h2, p{
+    color: white;
+    font-family: "Arial";
+  }
   </style>
+
 </head>
 
 <body>
@@ -16,17 +24,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="error-template">
-                <h1>
-                    Woahh!</h1>
+                <h1>Woahh!</h1>
                 <h2>
                     404 Not Found</h2>
                 <div class="error-details">
-                    Sorry, an error has occured, Requested page not found! or you don't have access to it....
+                    <p>Sorry, an error has occured, Requested page not found! or you don't have access to it....</p>
+                    <p>If someone sent you a link here maybe you're not part of their fellowship.</p>
                 </div>
                 <div class="error-actions">
-                <%= button_to root_path do %>
-                <%= fa_icon "home 2x"%><p>Go Home</p>
-                <% end %>
+                <a href="http://joinfellow.com">Go Home</a>&nbsp; &nbsp;
+                <a href="http://joinfellow.com/users/sign_up">Join Fellow</a>
                 </div>
             </div>
         </div>

@@ -1,13 +1,14 @@
-	<% Artifact.where(fellowship_id: @fellowship.id).each do |artifact| %>
+	<% Artifact.where(fellowship_id: @fellowship.id).order(created_at: :desc).each do |artifact| %>
             <div class="col-md-4">
 <%= link_to artifact do %>
 
 <div card class="art-cards">
     <div class="image">
         <%= image_tag(artifact.image) %>
-        <span class="title">
+        <span class="fellowship-user-title">
           <% if artifact.fellowship != nil %>
-          <%= artifact.fellowship.fellowship_name %>
+          <!-- <%= artifact.fellowship.fellowship_name %> -->
+           @<%= User.where(id: artifact.user_id).first.username%>
           <% end %>
 
         </span>
@@ -24,9 +25,16 @@
         <% artifact.tag_list.each do |t| %>
            <span class="label label-default"><%= t %></span>
            <% end %></h6>
+           <div class="read-length" style="float:right;">
+           <!-- get estimated reading time based on adult avg -->
+           <%= (artifact.content.split.size / 300.0).ceil%> min read
+           </div>
            <div class="meta-options" style="float:right;display:none;">
-           <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
-           <%= fa_icon "trash 2x" %>
+
+           <% if artifact.user_id == current_user.id %>
+             <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
+             <%= fa_icon "trash 2x" %>
+             <% end %>
            <% end %>
 <!--
            <%= fa_icon "share 2x" %>

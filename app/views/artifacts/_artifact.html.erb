@@ -29,6 +29,11 @@
         <% artifact.tag_list.each do |t| %>
            <h6 style="display:inline;"><span class="label label-default"><%= t %></span></h6>
            <% end %></h6>
+
+           <div class="read-length" style="float:right;">
+           <!-- get estimated reading time based on adult avg -->
+           <%= (artifact.content.split.size / 300.0).ceil%> min read
+           </div>
            <div class="meta-options" style="float:right;display:none;">
            <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
            <%= fa_icon "trash" %>

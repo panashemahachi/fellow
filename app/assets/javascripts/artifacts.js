@@ -3,9 +3,11 @@ ready = function() {
 	$('.art-cards').hover( 
 		function(){
 			$(this).find('.meta-options').css('display', 'inline');
+			$(this).find('.read-length').css('display', 'none');
 		},
 		function(){
 			$(this).find('.meta-options').css('display', 'none');
+			$(this).find('.read-length').css('display', 'inline');
 		});
 
 	if ($('.pagination').length){
