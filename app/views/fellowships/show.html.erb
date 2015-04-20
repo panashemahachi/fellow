@@ -19,6 +19,7 @@
 
 <div class="col-md-2">
 
+<% if current_user %>
 <% if @fellowship.user_id == current_user.id %>
 	creator!
 <% end %>
@@ -29,6 +30,7 @@
     <% else %>
     <%= button_to "Join fellowship", join_fellowship_path(@fellowship), method: :put, class: 'btn btn-primary', style: 'margin-top:7px;'%>
   <% end %>
+<% end %>
 <% end %>
 </div>
 

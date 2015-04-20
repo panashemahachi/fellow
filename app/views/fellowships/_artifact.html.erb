@@ -1,4 +1,5 @@
-	<% Artifact.where(fellowship_id: @fellowship.id).order(created_at: :desc).each do |artifact| %>
+
+  <% Artifact.where(fellowship_id: @fellowship.id).order(created_at: :desc).each do |artifact| %>
             <div class="col-md-4">
 <%= link_to artifact do %>
 
@@ -16,7 +17,7 @@
     <div class="content">
     <h6 class="text-center"><%= artifact.title%></h6>
         <p><%=h truncate(strip_tags(artifact.content), length: 120) %></p>
-        
+
     </div>
     <div class="action">
     <% if artifact.link_favicon != nil %>
@@ -28,10 +29,13 @@
            <% end %></h6>
            <div class="read-length" style="float:right;">
            <!-- get estimated reading time based on adult avg -->
+           <% if current_user %>
            <%= (artifact.content.split.size / 300.0).ceil%> min read
+           <% end %>
            </div>
            <div class="meta-options" style="float:right;display:none;">
 
+           <% if current_user %>
            <% if artifact.user_id == current_user.id %>
              <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
              <%= fa_icon "trash 2x" %>
@@ -47,6 +51,7 @@
            <% else %>
        <%= link_to like_artifact_path(artifact), method: :put do %>
               <%= fa_icon "star-o 2x" %>
+           <% end %>
            <% end %>
            <% end %>
            </div>

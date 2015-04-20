@@ -13,8 +13,14 @@ class FellowshipsController < ApplicationController
   # GET /fellowships/1.json
   def show
     respond_to do |format|
-      format.html
+
+      if current_user
+      format.html 
       format.js
+    else
+      format.html {render :layout => 'join'}
+      format.js
+    end
     end
   end
 

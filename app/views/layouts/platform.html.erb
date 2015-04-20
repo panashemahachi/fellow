@@ -142,7 +142,7 @@
   <%= form_for(Artifact.new) do |f|  %>
   <div class="field">
     <%= f.label :link %><br>
-    <%= f.text_field :link, autofocus: true , class: 'form-control', :style => 'padding-left:7px'%>
+    <%= f.text_field :link, autofocus: true , class: 'form-control', :style => 'padding-left:7px',required: true %>
   </div>
 
    <div class="field">
