@@ -1,4 +1,4 @@
-ActiveAdmin.register Artifact do
+#ActiveAdmin.register Artifact do
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -13,6 +13,6 @@ ActiveAdmin.register Artifact do
 #   permitted
 # end
 
-permit_params :title, :content, :kind, :user_id, :image, :link, :tldr, :fellowship_id, :link_favicon
+p#ermit_params :title, :content, :kind, :user_id, :image, :link, :tldr, :fellowship_id, :link_favicon
 
-end
+#end
