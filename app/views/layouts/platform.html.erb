@@ -138,19 +138,6 @@
   <div class="modal-body">
 
   <%= form_for(Artifact.new) do |f|  %>
-<!--
-    <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title , autofocus: true, class: 'form-control', :style => 'padding-left:7px' %>
-  </div>
-  <div class="field">
-    <%= f.label :kind %><br>
-    <%= f.text_field :kind, class: 'form-control', :style => 'padding-left:7px' %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content, class: 'form-control', :style => 'padding-left:7px' %>
-  </div>-->
   <div class="field">
     <%= f.label :link %><br>
     <%= f.text_field :link, autofocus: true , class: 'form-control', :style => 'padding-left:7px'%>
@@ -168,9 +155,6 @@
 
 <div class="field">
     <%= f.label "Fellowship" %><br>
-    <!-- <%= select(:artifact, :fellowship_id, current_user.fellowships.collect { |fship|
-      [fship.fellowship_name]}, {include_blank: 'None'}, class: "form-control") %>-->
-
       <%= f.collection_select(:fellowship_id, current_user.fellowships, :id, :fellowship_name, {include_blank: true}, {class: 'form-control'}) %>
   </div>
 

@@ -67,7 +67,7 @@ class ArtifactsController < ApplicationController
       if @artifact.fellowship != nil
 
         ###### GBTTT: Hacky fix to get id of artifact since it doesn't seem to be set by this time
-        projected_id = Artifact.last.id + 1
+        projected_id = Artifact.last.id + 2
         FellowshipAddition.added_to_fellowship(Fellowship.where(id: @artifact.fellowship.id).first.users, 
           @artifact, Fellowship.where(id: @artifact.fellowship.id).first.fellowship_name, current_user.id, projected_id).deliver
       end
