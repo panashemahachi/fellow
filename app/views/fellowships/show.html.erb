@@ -12,11 +12,16 @@
 <small>(<%= @fellowship.users.count %> members)</small>
 <% end %>
 
-</h2></center>
+</h2>
+<h4><%= @fellowship.fellowship_description%></h4>
+</center>
 </div>
 
 <div class="col-md-2">
 
+<% if @fellowship.user_id == current_user.id %>
+	creator!
+<% end %>
 <% if !@fellowship.public_fellowship %>
   <% if current_user.fellowships.include?(@fellowship) %>
     <%= button_to "Leave fellowship", leave_fellowship_path(@fellowship), method: :put, class: 'btn btn-danger', style: 'margin-top:7px;'%>

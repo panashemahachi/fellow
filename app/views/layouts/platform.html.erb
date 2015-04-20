@@ -197,12 +197,18 @@
       </div>
   <div class="modal-body">
 
-  <%= simple_form_for(Fellowship.new) do |f|  %>
+  <%= form_for(Fellowship.new) do |f|  %>
 
     <div class="field">
     <%= f.label :fellowship_name %><br>
-    <%= f.text_field :fellowship_name , autofocus: true, class: 'form-control', :style => 'padding-left:7px' %>
+    <%= f.text_field :fellowship_name , autofocus: true, required: true, class: 'form-control', :style => 'padding-left:7px' %>
   </div>
+
+ <div class="field">
+    <%= f.label :fellowship_description %><br>
+    <%= f.text_field :fellowship_description, required: true, class: 'form-control', :style => 'padding-left:7px' %>
+  </div>
+
 <div class="modal-footer">
   <div class="actions">
     <%= f.submit "Create", :class => 'btn btn-primary' %>

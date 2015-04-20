@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418053330) do
+ActiveRecord::Schema.define(version: 20150420020825) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -72,11 +72,12 @@ ActiveRecord::Schema.define(version: 20150418053330) do
   end
 
   create_table "fellowships", force: true do |t|
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.integer  "user_id"
-    t.string   "fellowship_name",   limit: nil
+    t.string   "fellowship_name",        limit: nil
     t.boolean  "public_fellowship"
+    t.string   "fellowship_description"
   end
 
   create_table "follows", force: true do |t|
