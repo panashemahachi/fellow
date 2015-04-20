@@ -12,7 +12,7 @@ class ArtifactsController < ApplicationController
 
       #@artifacts = Artifact.where(user_id: current_user.id).search(params[:search]).order(created_at: :desc).page(params[:page]).per_page(9)
     
-    @artifacts = Artifact.search(params[:search]).records.page(params[:page]).per_page(9)
+    @artifacts = Artifact.search(params[:search]).records.where(user_id: current_user.id).page(params[:page]).per_page(9)
     #@artifacts = @artifacts.page(params[:page]).per_page(9)
 
     elsif params[:tag]
