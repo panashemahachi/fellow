@@ -28,6 +28,9 @@ class ArtifactsController < ApplicationController
   # GET /artifacts/1
   # GET /artifacts/1.json
   def show
+    respond_to do |format|
+          format.html {render :layout => 'artifact_view'}
+      end
   end
 
   # GET /artifacts/new

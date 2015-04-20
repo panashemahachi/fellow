@@ -35,9 +35,6 @@
            <%= (artifact.content.split.size / 300.0).ceil%> min read
            </div>
            <div class="meta-options" style="float:right;display:none;">
-           <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
-           <%= fa_icon "trash" %>
-           <% end %>
 
 <% d_target = '#shareArtifact_' + artifact.id.to_s %>
 <%= link_to "#", class: 'login-text', :'data-toggle' => 'modal', 'data-target' => d_target do%>
@@ -50,8 +47,16 @@
                      <% end %>
            <% else %>
        <%= link_to like_artifact_path(artifact), method: :put do %>
-              <%= fa_icon "star-o" %>
+              <%= fa_icon "star", style: 'color:#95a5a6' %>
            <% end %>
+           <% end %>
+<% tag_target = '#artifactTag_' + artifact.id.to_s %>
+<%= link_to "#", class: 'login-text', :'data-toggle' => 'modal', 'data-target' => tag_target do%>
+           <%= fa_icon "tag" %>
+           <% end %>
+
+                      <%= link_to artifact, method: :delete, data: { confirm: 'Are you sure?' } do %>
+           <%= fa_icon "trash" %>
            <% end %>
            </div>
     </div>
@@ -70,7 +75,7 @@
       </div>
   <div class="modal-body">
 
-  <%= simple_form_for(artifact) do |f|  %>
+  <%= form_for(artifact) do |f|  %>
     <div class="field">
     <%= f.label :fellowship %><br>
 <%= f.collection_select(:fellowship_id, current_user.fellowships, :id, :fellowship_name, {include_blank: true}, {class: 'form-control'}) %>
@@ -87,6 +92,36 @@
 </div>
 </div>
 </div>
+
+        <div class="modal fade" id='<%= "artifactTag_#{artifact.id}" %>'>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center" id="myModalLabel">Edit Artifact Tag</h4>
+      </div>
+  <div class="modal-body">
+
+  <%= form_for(artifact) do |f|  %>
+
+  <div class="field">
+  <%= f.label :tag_list, "Tags (separated by commas)" %><br />
+  <%= f.text_field :tag_list, class: 'form-control', :style => 'padding-left:7px', autofocus: true %>
+</div>
+
+<div class="modal-footer">
+  <div class="actions">
+    <%= f.submit "Edit Tags", :class => 'btn btn-primary' %>
+  </div>
+  <% end %>
+
+  </div>
+  </div>
+
+</div>
+</div>
+</div>
+
   <% end %>
   <br />
       </div>

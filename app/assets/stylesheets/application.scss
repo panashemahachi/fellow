@@ -144,6 +144,15 @@ h2{
     z-index:1000;
 }
 
+.red-bar-2{
+    background-color: $brand_color;
+    position:fixed;
+    top:0;
+    height:7px;
+    width:100%;
+    z-index:1000;
+}
+
 .platform-footer {
   padding: 40px 0;
   color: #999;
@@ -159,6 +168,24 @@ button:focus, .btn:focus {
     outline:none !important;
 }
 
+.navbar.navbar-inverse {
+    background-color: rgba(255,255,255,0.85);
+    border: none;
+
+}
+
+.navbar.navbar-inverse .navbar-nav > li > a:hover,
+.navbar.navbar-inverse .navbar-nav > li > a:focus {
+    color: $brand_color;
+}
+
+.navbar.navbar-inverse .navbar-nav > li > a {
+    color: $brand_color;
+}
+
+.navbar.navbar-inverse .navbar-nav > li{
+    margin-top: 5px;
+}
 
 $brand-primary:         $brand_color;
 @import "bootswatch/paper/variables";

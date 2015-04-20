@@ -20,6 +20,30 @@ ready = function() {
 		});
 	}
 
+	// scrolling up
+
+    $(function(){
+      //Keep track of last scroll
+      var lastScroll = 0;
+      $(window).scroll(function(event){
+          //Sets the current scroll position
+          var st = $(this).scrollTop();
+          //Determines up-or-down scrolling
+          if (st > lastScroll){
+             //Replace this with your function call for downward-scrolling
+             $('.navbar.navbar-inverse').css('display', 'none');
+          }
+          else {
+             //Replace this with your function call for upward-scrolling
+             $('.navbar.navbar-inverse').css('display', 'inline');
+          }
+          //Updates scroll position
+          lastScroll = st;
+      });
+    });
+
+
+
 };
 
 $(document).ready(ready);

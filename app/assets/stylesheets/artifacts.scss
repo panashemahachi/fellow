@@ -62,12 +62,12 @@ $brand_grey: #95a5a6;
   padding-right:10px;
   color: #FFF;
 }
-.fa.fa-trash, .fa.fa-star-o, .fa.fa-share{
+.fa.fa-trash, .fa.fa-star-o, .fa.fa-share, .fa.fa-tag, .fa.fa-file-text-o {
   color: $brand_grey;
   font-size: 20px;
 }
 
-.fa-trash:hover, .fa-star-o:hover, .fa-share:hover{
+.fa-trash:hover, .fa-star-o:hover, .fa-share:hover, .fa-tag:hover, .fa-file-text-o:hover {
   color: $brand_color;
 }
 
