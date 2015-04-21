@@ -1,0 +1,58 @@
+<div class="artifact">
+
+<h3 class="text-center" style="color:#1abc9c">Enlightening Articles</h3>
+<% Artifact.where(top_artifact: true).limit(3).each do |artifact| %>
+            <div class="col-md-4">
+<%= link_to artifact do %>
+
+<div card class="art-cards">
+    <div class="image">
+        <%= image_tag(artifact.image) %>
+        <span class="title">
+          <% if artifact.fellowship != nil %>
+          <%= artifact.fellowship.fellowship_name %>
+          <% end %>
+
+        </span>
+    </div>
+    <div class="content">
+    <h6 class="text-center"><%= artifact.title%></h6>
+        <p><%=h truncate(strip_tags(artifact.content), length: 220) %></p>
+    </div>
+    <div class="action">
+    <% if artifact.link_favicon != nil %>
+    <%= image_tag(artifact.link_favicon, style: 'height:25px; width:25px;') %>
+    <% end %>
+    &nbsp;
+        <% artifact.tag_list.each do |t| %>
+           <h6 style="display:inline;"><span class="label label-default"><%= t %></span></h6>
+           <% end %></h6>
+
+           <div class="read-length" style="float:right;">
+           <!-- get estimated reading time based on adult avg -->
+           <%= (artifact.content.split.size / 300.0).ceil%> min read
+           </div>
+           <div class="meta-options" style="float:right;display:none;">
+
+<% d_target = '#shareArtifact_' + artifact.id.to_s %>
+<%= link_to "#", class: 'login-text', :'data-toggle' => 'modal', 'data-target' => d_target do%>
+           <%= fa_icon "share" %>
+           <% end %>
+
+           <% if current_user.voted_up_on? artifact %>
+           <%= link_to dislike_artifact_path(artifact), method: :put do %>
+              <%= fa_icon "star" %>
+                     <% end %>
+           <% else %>
+       <%= link_to like_artifact_path(artifact), method: :put do %>
+              <%= fa_icon "star", style: 'color:#95a5a6' %>
+           <% end %>
+           <% end %>
+           </div>
+    </div>
+</div>
+</div>
+<% end %>
+<% end %>
+<h3 class="text-center" style="margin-top:3%;color:#1abc9c">Click <%= link_to "here", "#", class: 'login-text', style: "text-decoration:underline", :'data-toggle' => 'modal', :'data-target' => '#newArtifact'%> to add your first.</h3>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420020825) do
+ActiveRecord::Schema.define(version: 20150421081147) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20150420020825) do
     t.string   "title",         limit: nil
     t.string   "kind",          limit: nil
     t.string   "content",       limit: nil
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.integer  "user_id"
     t.string   "image",         limit: nil
     t.string   "link",          limit: nil
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20150420020825) do
     t.integer  "fellowship_id"
     t.string   "link_favicon",  limit: nil
     t.string   "slug",          limit: nil
+    t.boolean  "top_artifact",              default: false
   end
 
   add_index "artifacts", ["slug"], name: "index_artifacts_on_slug"

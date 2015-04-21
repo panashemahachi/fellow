@@ -1,5 +1,9 @@
+<% if current_user.artifacts.count == 0 %>
+<%= render "no_artifacts" %>
+<% else %>
 <div id="artifacts">
 <%= render "artifact" %>
 </div>
 
 <%= will_paginate @artifacts %>
+<% end %>
