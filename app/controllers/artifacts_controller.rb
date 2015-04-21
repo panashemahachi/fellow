@@ -152,7 +152,9 @@ class ArtifactsController < ApplicationController
 
         # If the person with the link isn't part of a fellowship with the article, then they don't have access
         if not current_user.fellowships.include?(@artifact.fellowship)
+          if @artifact.top_artifact != true
           raise ActionController::RoutingError.new('Not Found')
+        end
         end
       end
     end
