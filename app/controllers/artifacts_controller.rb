@@ -62,7 +62,7 @@ class ArtifactsController < ApplicationController
       #@artifact.content =  Nokogiri::HTML(HTTParty.get("http://www.businessinsider.com/google-exec-sridhar-ramaswamy-controls-a-60-billion-business-2015-4").body.to_s).at_css("body").css('h1, h2, h3, h4, h5, h6').sort()
      source = open(@artifact.link).read
 
-      @artifact.content = Readability::Document.new(source, :tags => %w[div label ol h1 h2 h3 h4 h5 h6 p img a ul li b i a span br em code pre blockquote td tr th table tbody t], :attributes => %w[src href]).content
+      @artifact.content = Readability::Document.new(source, :tags => %w[div label ol h1 h2 h3 h4 h5 h6 p img a ul li b i a span br em code pre blockquote td tr th table tbody t video], :attributes => %w[src href]).content
       object = LinkThumbnailer.generate(@artifact.link)
       @artifact.image = object.images.first.src.to_s
       @artifact.title = object.title
